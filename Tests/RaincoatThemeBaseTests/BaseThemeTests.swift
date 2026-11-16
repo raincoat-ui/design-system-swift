@@ -1,0 +1,40 @@
+import RaincoatThemeBase
+import RaincoatTokens
+import Testing
+
+// The contract test for iOS. The values compiled into the theme must equal what the token
+// source resolves to, for every token in every color mode and density. The expected values in
+// Generated/ExpectedBaseTokens.swift are produced by a separate code path in the token build.
+
+@Test(arguments: ColorMode.allCases, Density.allCases)
+func everyTokenMatchesTheTokenSource(mode: ColorMode, density: Density) throws {
+    let key = "\(mode.rawValue)/\(density.rawValue)"
+    let expected = try #require(expectedBaseTokens[key], "no expected values for \(key)")
+    let actual = RaincoatTheme.base.tokens(mode: mode, density: density).flattened()
+
+    #expect(Set(actual.keys) == Set(expected.keys), "the token sets differ for \(key)")
+    for (id, value) in expected {
+        #expect(actual[id] == value, "\(id) in \(key)")
+    }
+}
+
+@Test func theSourceCoversEveryModeAndDensity() {
+    #expect(expectedBaseTokens.count == ColorMode.allCases.count * Density.allCases.count)
+    #expect((expectedBaseTokens["light/comfortable"]?.count ?? 0) > 80)
+}
+
+@Test func modesAndDensitiesActuallyDiffer() {
+    let theme = RaincoatTheme.base
+    let light = theme.tokens(mode: .light, density: .comfortable)
+    let dark = theme.tokens(mode: .dark, density: .comfortable)
+    let compact = theme.tokens(mode: .light, density: .compact)
+
+    #expect(light.color.bg.canvas != dark.color.bg.canvas)
+    #expect(light.button.primary.fg == dark.button.primary.fg)
+    #expect(light.size.control.md > compact.size.control.md)
+    #expect(light.color == compact.color)
+}
+
+@Test func theBaseThemeHasItsId() {
+    #expect(RaincoatTheme.base.id == "base")
+}

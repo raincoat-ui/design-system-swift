@@ -1,0 +1,2 @@
+/* What assistive technology says after the name of a button whose action is in progress. */
+"button.loading" = "진행 중";
