@@ -1,5 +1,13 @@
 # @raincoat-ui/swift
 
+## 0.1.0-next.2
+
+### Minor Changes
+
+- ad13995: The base theme is quieter and sharper: neutral greys lose their blue cast, every radius is 2px,
+  button labels are semibold, and secondary buttons have an ink outline. Brand themes that set
+  their own radii, label weights, neutrals, or `color.border.strong` look the same as before.
+
 ## 0.1.0-next.1
 
 ### Patch Changes

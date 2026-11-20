@@ -23,26 +23,26 @@ enum BaseThemeValues {
         color: RaincoatTokenSet.ColorTokens(
             bg: RaincoatTokenSet.ColorBgTokens(
                 canvas: TokenColor(hex: 0xffffff),
-                surface: TokenColor(hex: 0xf9fafc),
-                subtle: TokenColor(hex: 0xf1f4f7),
-                inverse: TokenColor(hex: 0x161b21),
-                disabled: TokenColor(hex: 0xf1f4f7)
+                surface: TokenColor(hex: 0xfafafb),
+                subtle: TokenColor(hex: 0xf3f3f4),
+                inverse: TokenColor(hex: 0x191b1d),
+                disabled: TokenColor(hex: 0xf3f3f4)
             ),
             fg: RaincoatTokenSet.ColorFgTokens(
-                default: TokenColor(hex: 0x161b21),
-                muted: TokenColor(hex: 0x575e68),
+                default: TokenColor(hex: 0x191b1d),
+                muted: TokenColor(hex: 0x5b5e61),
                 inverse: TokenColor(hex: 0xffffff),
                 accent: TokenColor(hex: 0x6c5901),
                 danger: TokenColor(hex: 0xa91518),
-                onAccent: TokenColor(hex: 0x0a0e12),
+                onAccent: TokenColor(hex: 0x0c0d0f),
                 onDanger: TokenColor(hex: 0xffffff),
-                disabled: TokenColor(hex: 0x9ea5af)
+                disabled: TokenColor(hex: 0xa2a5a8)
             ),
             border: RaincoatTokenSet.ColorBorderTokens(
-                default: TokenColor(hex: 0xccd1d9),
-                strong: TokenColor(hex: 0x737b85),
-                focus: TokenColor(hex: 0x161b21),
-                disabled: TokenColor(hex: 0xe1e5ea)
+                default: TokenColor(hex: 0xcfd1d4),
+                strong: TokenColor(hex: 0x191b1d),
+                focus: TokenColor(hex: 0x191b1d),
+                disabled: TokenColor(hex: 0xe3e5e6)
             ),
             accent: RaincoatTokenSet.ColorAccentTokens(
                 default: TokenColor(hex: 0xf7d22a),
@@ -56,8 +56,8 @@ enum BaseThemeValues {
             ),
             control: RaincoatTokenSet.ColorControlTokens(
                 default: TokenColor(hex: 0xffffff),
-                hover: TokenColor(hex: 0xf1f4f7),
-                pressed: TokenColor(hex: 0xe1e5ea)
+                hover: TokenColor(hex: 0xf3f3f4),
+                pressed: TokenColor(hex: 0xe3e5e6)
             )
         ),
         size: RaincoatTokenSet.SizeTokens(
@@ -87,9 +87,9 @@ enum BaseThemeValues {
         ),
         radius: RaincoatTokenSet.RadiusTokens(
             none: 0,
-            sm: 4,
-            md: 8,
-            lg: 12,
+            sm: 2,
+            md: 2,
+            lg: 2,
             full: 9999
         ),
         borderWidth: RaincoatTokenSet.BorderWidthTokens(
@@ -116,9 +116,9 @@ enum BaseThemeValues {
                 sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 400, letterSpacing: 0, lineHeight: 1.5)
             ),
             label: RaincoatTokenSet.TypeLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             )
         ),
         button: RaincoatTokenSet.ButtonTokens(
@@ -138,14 +138,14 @@ enum BaseThemeValues {
                 lg: 20
             ),
             label: RaincoatTokenSet.ButtonLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             ),
             focusRing: RaincoatTokenSet.ButtonFocusRingTokens(
                 width: 2,
                 offset: 2,
-                color: TokenColor(hex: 0x161b21)
+                color: TokenColor(hex: 0x191b1d)
             ),
             transition: RaincoatTokenSet.ButtonTransitionTokens(
                 duration: 0.1,
@@ -157,23 +157,23 @@ enum BaseThemeValues {
                     hover: TokenColor(hex: 0xe6c103),
                     pressed: TokenColor(hex: 0xba9c0a)
                 ),
-                fg: TokenColor(hex: 0x0a0e12)
+                fg: TokenColor(hex: 0x0c0d0f)
             ),
             secondary: RaincoatTokenSet.ButtonSecondaryTokens(
                 bg: RaincoatTokenSet.ButtonSecondaryBgTokens(
                     default: TokenColor(hex: 0xffffff),
-                    hover: TokenColor(hex: 0xf1f4f7),
-                    pressed: TokenColor(hex: 0xe1e5ea)
+                    hover: TokenColor(hex: 0xf3f3f4),
+                    pressed: TokenColor(hex: 0xe3e5e6)
                 ),
-                fg: TokenColor(hex: 0x161b21),
-                border: TokenColor(hex: 0x737b85)
+                fg: TokenColor(hex: 0x191b1d),
+                border: TokenColor(hex: 0x191b1d)
             ),
             ghost: RaincoatTokenSet.ButtonGhostTokens(
                 bg: RaincoatTokenSet.ButtonGhostBgTokens(
-                    hover: TokenColor(hex: 0xf1f4f7),
-                    pressed: TokenColor(hex: 0xe1e5ea)
+                    hover: TokenColor(hex: 0xf3f3f4),
+                    pressed: TokenColor(hex: 0xe3e5e6)
                 ),
-                fg: TokenColor(hex: 0x161b21)
+                fg: TokenColor(hex: 0x191b1d)
             ),
             danger: RaincoatTokenSet.ButtonDangerTokens(
                 bg: RaincoatTokenSet.ButtonDangerBgTokens(
@@ -184,11 +184,11 @@ enum BaseThemeValues {
                 fg: TokenColor(hex: 0xffffff)
             ),
             disabled: RaincoatTokenSet.ButtonDisabledTokens(
-                bg: TokenColor(hex: 0xf1f4f7),
-                fg: TokenColor(hex: 0x9ea5af),
-                border: TokenColor(hex: 0xe1e5ea)
+                bg: TokenColor(hex: 0xf3f3f4),
+                fg: TokenColor(hex: 0xa2a5a8),
+                border: TokenColor(hex: 0xe3e5e6)
             ),
-            radius: 8,
+            radius: 2,
             borderWidth: 1,
             gap: 8,
             targetMinimum: 44
@@ -199,26 +199,26 @@ enum BaseThemeValues {
         color: RaincoatTokenSet.ColorTokens(
             bg: RaincoatTokenSet.ColorBgTokens(
                 canvas: TokenColor(hex: 0xffffff),
-                surface: TokenColor(hex: 0xf9fafc),
-                subtle: TokenColor(hex: 0xf1f4f7),
-                inverse: TokenColor(hex: 0x161b21),
-                disabled: TokenColor(hex: 0xf1f4f7)
+                surface: TokenColor(hex: 0xfafafb),
+                subtle: TokenColor(hex: 0xf3f3f4),
+                inverse: TokenColor(hex: 0x191b1d),
+                disabled: TokenColor(hex: 0xf3f3f4)
             ),
             fg: RaincoatTokenSet.ColorFgTokens(
-                default: TokenColor(hex: 0x161b21),
-                muted: TokenColor(hex: 0x575e68),
+                default: TokenColor(hex: 0x191b1d),
+                muted: TokenColor(hex: 0x5b5e61),
                 inverse: TokenColor(hex: 0xffffff),
                 accent: TokenColor(hex: 0x6c5901),
                 danger: TokenColor(hex: 0xa91518),
-                onAccent: TokenColor(hex: 0x0a0e12),
+                onAccent: TokenColor(hex: 0x0c0d0f),
                 onDanger: TokenColor(hex: 0xffffff),
-                disabled: TokenColor(hex: 0x9ea5af)
+                disabled: TokenColor(hex: 0xa2a5a8)
             ),
             border: RaincoatTokenSet.ColorBorderTokens(
-                default: TokenColor(hex: 0xccd1d9),
-                strong: TokenColor(hex: 0x737b85),
-                focus: TokenColor(hex: 0x161b21),
-                disabled: TokenColor(hex: 0xe1e5ea)
+                default: TokenColor(hex: 0xcfd1d4),
+                strong: TokenColor(hex: 0x191b1d),
+                focus: TokenColor(hex: 0x191b1d),
+                disabled: TokenColor(hex: 0xe3e5e6)
             ),
             accent: RaincoatTokenSet.ColorAccentTokens(
                 default: TokenColor(hex: 0xf7d22a),
@@ -232,8 +232,8 @@ enum BaseThemeValues {
             ),
             control: RaincoatTokenSet.ColorControlTokens(
                 default: TokenColor(hex: 0xffffff),
-                hover: TokenColor(hex: 0xf1f4f7),
-                pressed: TokenColor(hex: 0xe1e5ea)
+                hover: TokenColor(hex: 0xf3f3f4),
+                pressed: TokenColor(hex: 0xe3e5e6)
             )
         ),
         size: RaincoatTokenSet.SizeTokens(
@@ -263,9 +263,9 @@ enum BaseThemeValues {
         ),
         radius: RaincoatTokenSet.RadiusTokens(
             none: 0,
-            sm: 4,
-            md: 8,
-            lg: 12,
+            sm: 2,
+            md: 2,
+            lg: 2,
             full: 9999
         ),
         borderWidth: RaincoatTokenSet.BorderWidthTokens(
@@ -292,9 +292,9 @@ enum BaseThemeValues {
                 sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 400, letterSpacing: 0, lineHeight: 1.5)
             ),
             label: RaincoatTokenSet.TypeLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             )
         ),
         button: RaincoatTokenSet.ButtonTokens(
@@ -314,14 +314,14 @@ enum BaseThemeValues {
                 lg: 20
             ),
             label: RaincoatTokenSet.ButtonLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             ),
             focusRing: RaincoatTokenSet.ButtonFocusRingTokens(
                 width: 2,
                 offset: 2,
-                color: TokenColor(hex: 0x161b21)
+                color: TokenColor(hex: 0x191b1d)
             ),
             transition: RaincoatTokenSet.ButtonTransitionTokens(
                 duration: 0.1,
@@ -333,23 +333,23 @@ enum BaseThemeValues {
                     hover: TokenColor(hex: 0xe6c103),
                     pressed: TokenColor(hex: 0xba9c0a)
                 ),
-                fg: TokenColor(hex: 0x0a0e12)
+                fg: TokenColor(hex: 0x0c0d0f)
             ),
             secondary: RaincoatTokenSet.ButtonSecondaryTokens(
                 bg: RaincoatTokenSet.ButtonSecondaryBgTokens(
                     default: TokenColor(hex: 0xffffff),
-                    hover: TokenColor(hex: 0xf1f4f7),
-                    pressed: TokenColor(hex: 0xe1e5ea)
+                    hover: TokenColor(hex: 0xf3f3f4),
+                    pressed: TokenColor(hex: 0xe3e5e6)
                 ),
-                fg: TokenColor(hex: 0x161b21),
-                border: TokenColor(hex: 0x737b85)
+                fg: TokenColor(hex: 0x191b1d),
+                border: TokenColor(hex: 0x191b1d)
             ),
             ghost: RaincoatTokenSet.ButtonGhostTokens(
                 bg: RaincoatTokenSet.ButtonGhostBgTokens(
-                    hover: TokenColor(hex: 0xf1f4f7),
-                    pressed: TokenColor(hex: 0xe1e5ea)
+                    hover: TokenColor(hex: 0xf3f3f4),
+                    pressed: TokenColor(hex: 0xe3e5e6)
                 ),
-                fg: TokenColor(hex: 0x161b21)
+                fg: TokenColor(hex: 0x191b1d)
             ),
             danger: RaincoatTokenSet.ButtonDangerTokens(
                 bg: RaincoatTokenSet.ButtonDangerBgTokens(
@@ -360,11 +360,11 @@ enum BaseThemeValues {
                 fg: TokenColor(hex: 0xffffff)
             ),
             disabled: RaincoatTokenSet.ButtonDisabledTokens(
-                bg: TokenColor(hex: 0xf1f4f7),
-                fg: TokenColor(hex: 0x9ea5af),
-                border: TokenColor(hex: 0xe1e5ea)
+                bg: TokenColor(hex: 0xf3f3f4),
+                fg: TokenColor(hex: 0xa2a5a8),
+                border: TokenColor(hex: 0xe3e5e6)
             ),
-            radius: 8,
+            radius: 2,
             borderWidth: 1,
             gap: 8,
             targetMinimum: 44
@@ -374,27 +374,27 @@ enum BaseThemeValues {
     static let darkComfortable = RaincoatTokenSet(
         color: RaincoatTokenSet.ColorTokens(
             bg: RaincoatTokenSet.ColorBgTokens(
-                canvas: TokenColor(hex: 0x0a0e12),
-                surface: TokenColor(hex: 0x161b21),
-                subtle: TokenColor(hex: 0x282e36),
-                inverse: TokenColor(hex: 0xf9fafc),
-                disabled: TokenColor(hex: 0x282e36)
+                canvas: TokenColor(hex: 0x0c0d0f),
+                surface: TokenColor(hex: 0x191b1d),
+                subtle: TokenColor(hex: 0x2c2e31),
+                inverse: TokenColor(hex: 0xfafafb),
+                disabled: TokenColor(hex: 0x2c2e31)
             ),
             fg: RaincoatTokenSet.ColorFgTokens(
-                default: TokenColor(hex: 0xf9fafc),
-                muted: TokenColor(hex: 0x9ea5af),
-                inverse: TokenColor(hex: 0x0a0e12),
+                default: TokenColor(hex: 0xfafafb),
+                muted: TokenColor(hex: 0xa2a5a8),
+                inverse: TokenColor(hex: 0x0c0d0f),
                 accent: TokenColor(hex: 0xfddc5b),
                 danger: TokenColor(hex: 0xf8a59b),
-                onAccent: TokenColor(hex: 0x0a0e12),
+                onAccent: TokenColor(hex: 0x0c0d0f),
                 onDanger: TokenColor(hex: 0xffffff),
-                disabled: TokenColor(hex: 0x575e68)
+                disabled: TokenColor(hex: 0x5b5e61)
             ),
             border: RaincoatTokenSet.ColorBorderTokens(
-                default: TokenColor(hex: 0x3f464f),
-                strong: TokenColor(hex: 0x737b85),
+                default: TokenColor(hex: 0x434548),
+                strong: TokenColor(hex: 0xf3f3f4),
                 focus: TokenColor(hex: 0xf7d22a),
-                disabled: TokenColor(hex: 0x3f464f)
+                disabled: TokenColor(hex: 0x434548)
             ),
             accent: RaincoatTokenSet.ColorAccentTokens(
                 default: TokenColor(hex: 0xf7d22a),
@@ -407,9 +407,9 @@ enum BaseThemeValues {
                 pressed: TokenColor(hex: 0x830d10)
             ),
             control: RaincoatTokenSet.ColorControlTokens(
-                default: TokenColor(hex: 0x161b21),
-                hover: TokenColor(hex: 0x282e36),
-                pressed: TokenColor(hex: 0x3f464f)
+                default: TokenColor(hex: 0x191b1d),
+                hover: TokenColor(hex: 0x2c2e31),
+                pressed: TokenColor(hex: 0x434548)
             )
         ),
         size: RaincoatTokenSet.SizeTokens(
@@ -439,9 +439,9 @@ enum BaseThemeValues {
         ),
         radius: RaincoatTokenSet.RadiusTokens(
             none: 0,
-            sm: 4,
-            md: 8,
-            lg: 12,
+            sm: 2,
+            md: 2,
+            lg: 2,
             full: 9999
         ),
         borderWidth: RaincoatTokenSet.BorderWidthTokens(
@@ -468,9 +468,9 @@ enum BaseThemeValues {
                 sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 400, letterSpacing: 0, lineHeight: 1.5)
             ),
             label: RaincoatTokenSet.TypeLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             )
         ),
         button: RaincoatTokenSet.ButtonTokens(
@@ -490,9 +490,9 @@ enum BaseThemeValues {
                 lg: 20
             ),
             label: RaincoatTokenSet.ButtonLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             ),
             focusRing: RaincoatTokenSet.ButtonFocusRingTokens(
                 width: 2,
@@ -509,23 +509,23 @@ enum BaseThemeValues {
                     hover: TokenColor(hex: 0xfddc5b),
                     pressed: TokenColor(hex: 0xe6c103)
                 ),
-                fg: TokenColor(hex: 0x0a0e12)
+                fg: TokenColor(hex: 0x0c0d0f)
             ),
             secondary: RaincoatTokenSet.ButtonSecondaryTokens(
                 bg: RaincoatTokenSet.ButtonSecondaryBgTokens(
-                    default: TokenColor(hex: 0x161b21),
-                    hover: TokenColor(hex: 0x282e36),
-                    pressed: TokenColor(hex: 0x3f464f)
+                    default: TokenColor(hex: 0x191b1d),
+                    hover: TokenColor(hex: 0x2c2e31),
+                    pressed: TokenColor(hex: 0x434548)
                 ),
-                fg: TokenColor(hex: 0xf9fafc),
-                border: TokenColor(hex: 0x737b85)
+                fg: TokenColor(hex: 0xfafafb),
+                border: TokenColor(hex: 0xf3f3f4)
             ),
             ghost: RaincoatTokenSet.ButtonGhostTokens(
                 bg: RaincoatTokenSet.ButtonGhostBgTokens(
-                    hover: TokenColor(hex: 0x282e36),
-                    pressed: TokenColor(hex: 0x3f464f)
+                    hover: TokenColor(hex: 0x2c2e31),
+                    pressed: TokenColor(hex: 0x434548)
                 ),
-                fg: TokenColor(hex: 0xf9fafc)
+                fg: TokenColor(hex: 0xfafafb)
             ),
             danger: RaincoatTokenSet.ButtonDangerTokens(
                 bg: RaincoatTokenSet.ButtonDangerBgTokens(
@@ -536,11 +536,11 @@ enum BaseThemeValues {
                 fg: TokenColor(hex: 0xffffff)
             ),
             disabled: RaincoatTokenSet.ButtonDisabledTokens(
-                bg: TokenColor(hex: 0x282e36),
-                fg: TokenColor(hex: 0x575e68),
-                border: TokenColor(hex: 0x3f464f)
+                bg: TokenColor(hex: 0x2c2e31),
+                fg: TokenColor(hex: 0x5b5e61),
+                border: TokenColor(hex: 0x434548)
             ),
-            radius: 8,
+            radius: 2,
             borderWidth: 1,
             gap: 8,
             targetMinimum: 44
@@ -550,27 +550,27 @@ enum BaseThemeValues {
     static let darkCompact = RaincoatTokenSet(
         color: RaincoatTokenSet.ColorTokens(
             bg: RaincoatTokenSet.ColorBgTokens(
-                canvas: TokenColor(hex: 0x0a0e12),
-                surface: TokenColor(hex: 0x161b21),
-                subtle: TokenColor(hex: 0x282e36),
-                inverse: TokenColor(hex: 0xf9fafc),
-                disabled: TokenColor(hex: 0x282e36)
+                canvas: TokenColor(hex: 0x0c0d0f),
+                surface: TokenColor(hex: 0x191b1d),
+                subtle: TokenColor(hex: 0x2c2e31),
+                inverse: TokenColor(hex: 0xfafafb),
+                disabled: TokenColor(hex: 0x2c2e31)
             ),
             fg: RaincoatTokenSet.ColorFgTokens(
-                default: TokenColor(hex: 0xf9fafc),
-                muted: TokenColor(hex: 0x9ea5af),
-                inverse: TokenColor(hex: 0x0a0e12),
+                default: TokenColor(hex: 0xfafafb),
+                muted: TokenColor(hex: 0xa2a5a8),
+                inverse: TokenColor(hex: 0x0c0d0f),
                 accent: TokenColor(hex: 0xfddc5b),
                 danger: TokenColor(hex: 0xf8a59b),
-                onAccent: TokenColor(hex: 0x0a0e12),
+                onAccent: TokenColor(hex: 0x0c0d0f),
                 onDanger: TokenColor(hex: 0xffffff),
-                disabled: TokenColor(hex: 0x575e68)
+                disabled: TokenColor(hex: 0x5b5e61)
             ),
             border: RaincoatTokenSet.ColorBorderTokens(
-                default: TokenColor(hex: 0x3f464f),
-                strong: TokenColor(hex: 0x737b85),
+                default: TokenColor(hex: 0x434548),
+                strong: TokenColor(hex: 0xf3f3f4),
                 focus: TokenColor(hex: 0xf7d22a),
-                disabled: TokenColor(hex: 0x3f464f)
+                disabled: TokenColor(hex: 0x434548)
             ),
             accent: RaincoatTokenSet.ColorAccentTokens(
                 default: TokenColor(hex: 0xf7d22a),
@@ -583,9 +583,9 @@ enum BaseThemeValues {
                 pressed: TokenColor(hex: 0x830d10)
             ),
             control: RaincoatTokenSet.ColorControlTokens(
-                default: TokenColor(hex: 0x161b21),
-                hover: TokenColor(hex: 0x282e36),
-                pressed: TokenColor(hex: 0x3f464f)
+                default: TokenColor(hex: 0x191b1d),
+                hover: TokenColor(hex: 0x2c2e31),
+                pressed: TokenColor(hex: 0x434548)
             )
         ),
         size: RaincoatTokenSet.SizeTokens(
@@ -615,9 +615,9 @@ enum BaseThemeValues {
         ),
         radius: RaincoatTokenSet.RadiusTokens(
             none: 0,
-            sm: 4,
-            md: 8,
-            lg: 12,
+            sm: 2,
+            md: 2,
+            lg: 2,
             full: 9999
         ),
         borderWidth: RaincoatTokenSet.BorderWidthTokens(
@@ -644,9 +644,9 @@ enum BaseThemeValues {
                 sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 400, letterSpacing: 0, lineHeight: 1.5)
             ),
             label: RaincoatTokenSet.TypeLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             )
         ),
         button: RaincoatTokenSet.ButtonTokens(
@@ -666,9 +666,9 @@ enum BaseThemeValues {
                 lg: 20
             ),
             label: RaincoatTokenSet.ButtonLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             ),
             focusRing: RaincoatTokenSet.ButtonFocusRingTokens(
                 width: 2,
@@ -685,23 +685,23 @@ enum BaseThemeValues {
                     hover: TokenColor(hex: 0xfddc5b),
                     pressed: TokenColor(hex: 0xe6c103)
                 ),
-                fg: TokenColor(hex: 0x0a0e12)
+                fg: TokenColor(hex: 0x0c0d0f)
             ),
             secondary: RaincoatTokenSet.ButtonSecondaryTokens(
                 bg: RaincoatTokenSet.ButtonSecondaryBgTokens(
-                    default: TokenColor(hex: 0x161b21),
-                    hover: TokenColor(hex: 0x282e36),
-                    pressed: TokenColor(hex: 0x3f464f)
+                    default: TokenColor(hex: 0x191b1d),
+                    hover: TokenColor(hex: 0x2c2e31),
+                    pressed: TokenColor(hex: 0x434548)
                 ),
-                fg: TokenColor(hex: 0xf9fafc),
-                border: TokenColor(hex: 0x737b85)
+                fg: TokenColor(hex: 0xfafafb),
+                border: TokenColor(hex: 0xf3f3f4)
             ),
             ghost: RaincoatTokenSet.ButtonGhostTokens(
                 bg: RaincoatTokenSet.ButtonGhostBgTokens(
-                    hover: TokenColor(hex: 0x282e36),
-                    pressed: TokenColor(hex: 0x3f464f)
+                    hover: TokenColor(hex: 0x2c2e31),
+                    pressed: TokenColor(hex: 0x434548)
                 ),
-                fg: TokenColor(hex: 0xf9fafc)
+                fg: TokenColor(hex: 0xfafafb)
             ),
             danger: RaincoatTokenSet.ButtonDangerTokens(
                 bg: RaincoatTokenSet.ButtonDangerBgTokens(
@@ -712,11 +712,11 @@ enum BaseThemeValues {
                 fg: TokenColor(hex: 0xffffff)
             ),
             disabled: RaincoatTokenSet.ButtonDisabledTokens(
-                bg: TokenColor(hex: 0x282e36),
-                fg: TokenColor(hex: 0x575e68),
-                border: TokenColor(hex: 0x3f464f)
+                bg: TokenColor(hex: 0x2c2e31),
+                fg: TokenColor(hex: 0x5b5e61),
+                border: TokenColor(hex: 0x434548)
             ),
-            radius: 8,
+            radius: 2,
             borderWidth: 1,
             gap: 8,
             targetMinimum: 44
@@ -728,25 +728,25 @@ enum BaseThemeValues {
             bg: RaincoatTokenSet.ColorBgTokens(
                 canvas: TokenColor(hex: 0xffffff),
                 surface: TokenColor(hex: 0xffffff),
-                subtle: TokenColor(hex: 0xf1f4f7),
+                subtle: TokenColor(hex: 0xf3f3f4),
                 inverse: TokenColor(hex: 0x000000),
-                disabled: TokenColor(hex: 0xf1f4f7)
+                disabled: TokenColor(hex: 0xf3f3f4)
             ),
             fg: RaincoatTokenSet.ColorFgTokens(
                 default: TokenColor(hex: 0x000000),
-                muted: TokenColor(hex: 0x3f464f),
+                muted: TokenColor(hex: 0x434548),
                 inverse: TokenColor(hex: 0xffffff),
                 accent: TokenColor(hex: 0x4c3f03),
                 danger: TokenColor(hex: 0x830d10),
                 onAccent: TokenColor(hex: 0x000000),
                 onDanger: TokenColor(hex: 0xffffff),
-                disabled: TokenColor(hex: 0x737b85)
+                disabled: TokenColor(hex: 0x787a7e)
             ),
             border: RaincoatTokenSet.ColorBorderTokens(
-                default: TokenColor(hex: 0x575e68),
-                strong: TokenColor(hex: 0x161b21),
+                default: TokenColor(hex: 0x5b5e61),
+                strong: TokenColor(hex: 0x191b1d),
                 focus: TokenColor(hex: 0x000000),
-                disabled: TokenColor(hex: 0x9ea5af)
+                disabled: TokenColor(hex: 0xa2a5a8)
             ),
             accent: RaincoatTokenSet.ColorAccentTokens(
                 default: TokenColor(hex: 0xf7d22a),
@@ -760,8 +760,8 @@ enum BaseThemeValues {
             ),
             control: RaincoatTokenSet.ColorControlTokens(
                 default: TokenColor(hex: 0xffffff),
-                hover: TokenColor(hex: 0xf1f4f7),
-                pressed: TokenColor(hex: 0xe1e5ea)
+                hover: TokenColor(hex: 0xf3f3f4),
+                pressed: TokenColor(hex: 0xe3e5e6)
             )
         ),
         size: RaincoatTokenSet.SizeTokens(
@@ -791,9 +791,9 @@ enum BaseThemeValues {
         ),
         radius: RaincoatTokenSet.RadiusTokens(
             none: 0,
-            sm: 4,
-            md: 8,
-            lg: 12,
+            sm: 2,
+            md: 2,
+            lg: 2,
             full: 9999
         ),
         borderWidth: RaincoatTokenSet.BorderWidthTokens(
@@ -820,9 +820,9 @@ enum BaseThemeValues {
                 sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 400, letterSpacing: 0, lineHeight: 1.5)
             ),
             label: RaincoatTokenSet.TypeLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             )
         ),
         button: RaincoatTokenSet.ButtonTokens(
@@ -842,9 +842,9 @@ enum BaseThemeValues {
                 lg: 20
             ),
             label: RaincoatTokenSet.ButtonLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             ),
             focusRing: RaincoatTokenSet.ButtonFocusRingTokens(
                 width: 2,
@@ -866,16 +866,16 @@ enum BaseThemeValues {
             secondary: RaincoatTokenSet.ButtonSecondaryTokens(
                 bg: RaincoatTokenSet.ButtonSecondaryBgTokens(
                     default: TokenColor(hex: 0xffffff),
-                    hover: TokenColor(hex: 0xf1f4f7),
-                    pressed: TokenColor(hex: 0xe1e5ea)
+                    hover: TokenColor(hex: 0xf3f3f4),
+                    pressed: TokenColor(hex: 0xe3e5e6)
                 ),
                 fg: TokenColor(hex: 0x000000),
-                border: TokenColor(hex: 0x161b21)
+                border: TokenColor(hex: 0x191b1d)
             ),
             ghost: RaincoatTokenSet.ButtonGhostTokens(
                 bg: RaincoatTokenSet.ButtonGhostBgTokens(
-                    hover: TokenColor(hex: 0xf1f4f7),
-                    pressed: TokenColor(hex: 0xe1e5ea)
+                    hover: TokenColor(hex: 0xf3f3f4),
+                    pressed: TokenColor(hex: 0xe3e5e6)
                 ),
                 fg: TokenColor(hex: 0x000000)
             ),
@@ -888,11 +888,11 @@ enum BaseThemeValues {
                 fg: TokenColor(hex: 0xffffff)
             ),
             disabled: RaincoatTokenSet.ButtonDisabledTokens(
-                bg: TokenColor(hex: 0xf1f4f7),
-                fg: TokenColor(hex: 0x737b85),
-                border: TokenColor(hex: 0x9ea5af)
+                bg: TokenColor(hex: 0xf3f3f4),
+                fg: TokenColor(hex: 0x787a7e),
+                border: TokenColor(hex: 0xa2a5a8)
             ),
-            radius: 8,
+            radius: 2,
             borderWidth: 1,
             gap: 8,
             targetMinimum: 44
@@ -904,25 +904,25 @@ enum BaseThemeValues {
             bg: RaincoatTokenSet.ColorBgTokens(
                 canvas: TokenColor(hex: 0xffffff),
                 surface: TokenColor(hex: 0xffffff),
-                subtle: TokenColor(hex: 0xf1f4f7),
+                subtle: TokenColor(hex: 0xf3f3f4),
                 inverse: TokenColor(hex: 0x000000),
-                disabled: TokenColor(hex: 0xf1f4f7)
+                disabled: TokenColor(hex: 0xf3f3f4)
             ),
             fg: RaincoatTokenSet.ColorFgTokens(
                 default: TokenColor(hex: 0x000000),
-                muted: TokenColor(hex: 0x3f464f),
+                muted: TokenColor(hex: 0x434548),
                 inverse: TokenColor(hex: 0xffffff),
                 accent: TokenColor(hex: 0x4c3f03),
                 danger: TokenColor(hex: 0x830d10),
                 onAccent: TokenColor(hex: 0x000000),
                 onDanger: TokenColor(hex: 0xffffff),
-                disabled: TokenColor(hex: 0x737b85)
+                disabled: TokenColor(hex: 0x787a7e)
             ),
             border: RaincoatTokenSet.ColorBorderTokens(
-                default: TokenColor(hex: 0x575e68),
-                strong: TokenColor(hex: 0x161b21),
+                default: TokenColor(hex: 0x5b5e61),
+                strong: TokenColor(hex: 0x191b1d),
                 focus: TokenColor(hex: 0x000000),
-                disabled: TokenColor(hex: 0x9ea5af)
+                disabled: TokenColor(hex: 0xa2a5a8)
             ),
             accent: RaincoatTokenSet.ColorAccentTokens(
                 default: TokenColor(hex: 0xf7d22a),
@@ -936,8 +936,8 @@ enum BaseThemeValues {
             ),
             control: RaincoatTokenSet.ColorControlTokens(
                 default: TokenColor(hex: 0xffffff),
-                hover: TokenColor(hex: 0xf1f4f7),
-                pressed: TokenColor(hex: 0xe1e5ea)
+                hover: TokenColor(hex: 0xf3f3f4),
+                pressed: TokenColor(hex: 0xe3e5e6)
             )
         ),
         size: RaincoatTokenSet.SizeTokens(
@@ -967,9 +967,9 @@ enum BaseThemeValues {
         ),
         radius: RaincoatTokenSet.RadiusTokens(
             none: 0,
-            sm: 4,
-            md: 8,
-            lg: 12,
+            sm: 2,
+            md: 2,
+            lg: 2,
             full: 9999
         ),
         borderWidth: RaincoatTokenSet.BorderWidthTokens(
@@ -996,9 +996,9 @@ enum BaseThemeValues {
                 sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 400, letterSpacing: 0, lineHeight: 1.5)
             ),
             label: RaincoatTokenSet.TypeLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             )
         ),
         button: RaincoatTokenSet.ButtonTokens(
@@ -1018,9 +1018,9 @@ enum BaseThemeValues {
                 lg: 20
             ),
             label: RaincoatTokenSet.ButtonLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             ),
             focusRing: RaincoatTokenSet.ButtonFocusRingTokens(
                 width: 2,
@@ -1042,16 +1042,16 @@ enum BaseThemeValues {
             secondary: RaincoatTokenSet.ButtonSecondaryTokens(
                 bg: RaincoatTokenSet.ButtonSecondaryBgTokens(
                     default: TokenColor(hex: 0xffffff),
-                    hover: TokenColor(hex: 0xf1f4f7),
-                    pressed: TokenColor(hex: 0xe1e5ea)
+                    hover: TokenColor(hex: 0xf3f3f4),
+                    pressed: TokenColor(hex: 0xe3e5e6)
                 ),
                 fg: TokenColor(hex: 0x000000),
-                border: TokenColor(hex: 0x161b21)
+                border: TokenColor(hex: 0x191b1d)
             ),
             ghost: RaincoatTokenSet.ButtonGhostTokens(
                 bg: RaincoatTokenSet.ButtonGhostBgTokens(
-                    hover: TokenColor(hex: 0xf1f4f7),
-                    pressed: TokenColor(hex: 0xe1e5ea)
+                    hover: TokenColor(hex: 0xf3f3f4),
+                    pressed: TokenColor(hex: 0xe3e5e6)
                 ),
                 fg: TokenColor(hex: 0x000000)
             ),
@@ -1064,11 +1064,11 @@ enum BaseThemeValues {
                 fg: TokenColor(hex: 0xffffff)
             ),
             disabled: RaincoatTokenSet.ButtonDisabledTokens(
-                bg: TokenColor(hex: 0xf1f4f7),
-                fg: TokenColor(hex: 0x737b85),
-                border: TokenColor(hex: 0x9ea5af)
+                bg: TokenColor(hex: 0xf3f3f4),
+                fg: TokenColor(hex: 0x787a7e),
+                border: TokenColor(hex: 0xa2a5a8)
             ),
-            radius: 8,
+            radius: 2,
             borderWidth: 1,
             gap: 8,
             targetMinimum: 44
@@ -1080,25 +1080,25 @@ enum BaseThemeValues {
             bg: RaincoatTokenSet.ColorBgTokens(
                 canvas: TokenColor(hex: 0x000000),
                 surface: TokenColor(hex: 0x000000),
-                subtle: TokenColor(hex: 0x0a0e12),
+                subtle: TokenColor(hex: 0x0c0d0f),
                 inverse: TokenColor(hex: 0xffffff),
-                disabled: TokenColor(hex: 0x161b21)
+                disabled: TokenColor(hex: 0x191b1d)
             ),
             fg: RaincoatTokenSet.ColorFgTokens(
                 default: TokenColor(hex: 0xffffff),
-                muted: TokenColor(hex: 0xe1e5ea),
+                muted: TokenColor(hex: 0xe3e5e6),
                 inverse: TokenColor(hex: 0x000000),
                 accent: TokenColor(hex: 0xffe891),
                 danger: TokenColor(hex: 0xfdc9c2),
                 onAccent: TokenColor(hex: 0x000000),
                 onDanger: TokenColor(hex: 0x000000),
-                disabled: TokenColor(hex: 0x737b85)
+                disabled: TokenColor(hex: 0x787a7e)
             ),
             border: RaincoatTokenSet.ColorBorderTokens(
-                default: TokenColor(hex: 0x9ea5af),
-                strong: TokenColor(hex: 0xf1f4f7),
+                default: TokenColor(hex: 0xa2a5a8),
+                strong: TokenColor(hex: 0xf3f3f4),
                 focus: TokenColor(hex: 0xfddc5b),
-                disabled: TokenColor(hex: 0x575e68)
+                disabled: TokenColor(hex: 0x5b5e61)
             ),
             accent: RaincoatTokenSet.ColorAccentTokens(
                 default: TokenColor(hex: 0xfddc5b),
@@ -1112,8 +1112,8 @@ enum BaseThemeValues {
             ),
             control: RaincoatTokenSet.ColorControlTokens(
                 default: TokenColor(hex: 0x000000),
-                hover: TokenColor(hex: 0x0a0e12),
-                pressed: TokenColor(hex: 0x161b21)
+                hover: TokenColor(hex: 0x0c0d0f),
+                pressed: TokenColor(hex: 0x191b1d)
             )
         ),
         size: RaincoatTokenSet.SizeTokens(
@@ -1143,9 +1143,9 @@ enum BaseThemeValues {
         ),
         radius: RaincoatTokenSet.RadiusTokens(
             none: 0,
-            sm: 4,
-            md: 8,
-            lg: 12,
+            sm: 2,
+            md: 2,
+            lg: 2,
             full: 9999
         ),
         borderWidth: RaincoatTokenSet.BorderWidthTokens(
@@ -1172,9 +1172,9 @@ enum BaseThemeValues {
                 sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 400, letterSpacing: 0, lineHeight: 1.5)
             ),
             label: RaincoatTokenSet.TypeLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             )
         ),
         button: RaincoatTokenSet.ButtonTokens(
@@ -1194,9 +1194,9 @@ enum BaseThemeValues {
                 lg: 20
             ),
             label: RaincoatTokenSet.ButtonLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             ),
             focusRing: RaincoatTokenSet.ButtonFocusRingTokens(
                 width: 2,
@@ -1218,16 +1218,16 @@ enum BaseThemeValues {
             secondary: RaincoatTokenSet.ButtonSecondaryTokens(
                 bg: RaincoatTokenSet.ButtonSecondaryBgTokens(
                     default: TokenColor(hex: 0x000000),
-                    hover: TokenColor(hex: 0x0a0e12),
-                    pressed: TokenColor(hex: 0x161b21)
+                    hover: TokenColor(hex: 0x0c0d0f),
+                    pressed: TokenColor(hex: 0x191b1d)
                 ),
                 fg: TokenColor(hex: 0xffffff),
-                border: TokenColor(hex: 0xf1f4f7)
+                border: TokenColor(hex: 0xf3f3f4)
             ),
             ghost: RaincoatTokenSet.ButtonGhostTokens(
                 bg: RaincoatTokenSet.ButtonGhostBgTokens(
-                    hover: TokenColor(hex: 0x0a0e12),
-                    pressed: TokenColor(hex: 0x161b21)
+                    hover: TokenColor(hex: 0x0c0d0f),
+                    pressed: TokenColor(hex: 0x191b1d)
                 ),
                 fg: TokenColor(hex: 0xffffff)
             ),
@@ -1240,11 +1240,11 @@ enum BaseThemeValues {
                 fg: TokenColor(hex: 0x000000)
             ),
             disabled: RaincoatTokenSet.ButtonDisabledTokens(
-                bg: TokenColor(hex: 0x161b21),
-                fg: TokenColor(hex: 0x737b85),
-                border: TokenColor(hex: 0x575e68)
+                bg: TokenColor(hex: 0x191b1d),
+                fg: TokenColor(hex: 0x787a7e),
+                border: TokenColor(hex: 0x5b5e61)
             ),
-            radius: 8,
+            radius: 2,
             borderWidth: 1,
             gap: 8,
             targetMinimum: 44
@@ -1256,25 +1256,25 @@ enum BaseThemeValues {
             bg: RaincoatTokenSet.ColorBgTokens(
                 canvas: TokenColor(hex: 0x000000),
                 surface: TokenColor(hex: 0x000000),
-                subtle: TokenColor(hex: 0x0a0e12),
+                subtle: TokenColor(hex: 0x0c0d0f),
                 inverse: TokenColor(hex: 0xffffff),
-                disabled: TokenColor(hex: 0x161b21)
+                disabled: TokenColor(hex: 0x191b1d)
             ),
             fg: RaincoatTokenSet.ColorFgTokens(
                 default: TokenColor(hex: 0xffffff),
-                muted: TokenColor(hex: 0xe1e5ea),
+                muted: TokenColor(hex: 0xe3e5e6),
                 inverse: TokenColor(hex: 0x000000),
                 accent: TokenColor(hex: 0xffe891),
                 danger: TokenColor(hex: 0xfdc9c2),
                 onAccent: TokenColor(hex: 0x000000),
                 onDanger: TokenColor(hex: 0x000000),
-                disabled: TokenColor(hex: 0x737b85)
+                disabled: TokenColor(hex: 0x787a7e)
             ),
             border: RaincoatTokenSet.ColorBorderTokens(
-                default: TokenColor(hex: 0x9ea5af),
-                strong: TokenColor(hex: 0xf1f4f7),
+                default: TokenColor(hex: 0xa2a5a8),
+                strong: TokenColor(hex: 0xf3f3f4),
                 focus: TokenColor(hex: 0xfddc5b),
-                disabled: TokenColor(hex: 0x575e68)
+                disabled: TokenColor(hex: 0x5b5e61)
             ),
             accent: RaincoatTokenSet.ColorAccentTokens(
                 default: TokenColor(hex: 0xfddc5b),
@@ -1288,8 +1288,8 @@ enum BaseThemeValues {
             ),
             control: RaincoatTokenSet.ColorControlTokens(
                 default: TokenColor(hex: 0x000000),
-                hover: TokenColor(hex: 0x0a0e12),
-                pressed: TokenColor(hex: 0x161b21)
+                hover: TokenColor(hex: 0x0c0d0f),
+                pressed: TokenColor(hex: 0x191b1d)
             )
         ),
         size: RaincoatTokenSet.SizeTokens(
@@ -1319,9 +1319,9 @@ enum BaseThemeValues {
         ),
         radius: RaincoatTokenSet.RadiusTokens(
             none: 0,
-            sm: 4,
-            md: 8,
-            lg: 12,
+            sm: 2,
+            md: 2,
+            lg: 2,
             full: 9999
         ),
         borderWidth: RaincoatTokenSet.BorderWidthTokens(
@@ -1348,9 +1348,9 @@ enum BaseThemeValues {
                 sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 400, letterSpacing: 0, lineHeight: 1.5)
             ),
             label: RaincoatTokenSet.TypeLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             )
         ),
         button: RaincoatTokenSet.ButtonTokens(
@@ -1370,9 +1370,9 @@ enum BaseThemeValues {
                 lg: 20
             ),
             label: RaincoatTokenSet.ButtonLabelTokens(
-                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 500, letterSpacing: 0, lineHeight: 1.4),
-                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 500, letterSpacing: 0, lineHeight: 1.4)
+                sm: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 14, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                md: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 16, weight: 600, letterSpacing: 0, lineHeight: 1.4),
+                lg: TokenTextStyle(families: ["Be Vietnam Pro", "system-ui", "sans-serif"], size: 18, weight: 600, letterSpacing: 0, lineHeight: 1.4)
             ),
             focusRing: RaincoatTokenSet.ButtonFocusRingTokens(
                 width: 2,
@@ -1394,16 +1394,16 @@ enum BaseThemeValues {
             secondary: RaincoatTokenSet.ButtonSecondaryTokens(
                 bg: RaincoatTokenSet.ButtonSecondaryBgTokens(
                     default: TokenColor(hex: 0x000000),
-                    hover: TokenColor(hex: 0x0a0e12),
-                    pressed: TokenColor(hex: 0x161b21)
+                    hover: TokenColor(hex: 0x0c0d0f),
+                    pressed: TokenColor(hex: 0x191b1d)
                 ),
                 fg: TokenColor(hex: 0xffffff),
-                border: TokenColor(hex: 0xf1f4f7)
+                border: TokenColor(hex: 0xf3f3f4)
             ),
             ghost: RaincoatTokenSet.ButtonGhostTokens(
                 bg: RaincoatTokenSet.ButtonGhostBgTokens(
-                    hover: TokenColor(hex: 0x0a0e12),
-                    pressed: TokenColor(hex: 0x161b21)
+                    hover: TokenColor(hex: 0x0c0d0f),
+                    pressed: TokenColor(hex: 0x191b1d)
                 ),
                 fg: TokenColor(hex: 0xffffff)
             ),
@@ -1416,11 +1416,11 @@ enum BaseThemeValues {
                 fg: TokenColor(hex: 0x000000)
             ),
             disabled: RaincoatTokenSet.ButtonDisabledTokens(
-                bg: TokenColor(hex: 0x161b21),
-                fg: TokenColor(hex: 0x737b85),
-                border: TokenColor(hex: 0x575e68)
+                bg: TokenColor(hex: 0x191b1d),
+                fg: TokenColor(hex: 0x787a7e),
+                border: TokenColor(hex: 0x5b5e61)
             ),
-            radius: 8,
+            radius: 2,
             borderWidth: 1,
             gap: 8,
             targetMinimum: 44
