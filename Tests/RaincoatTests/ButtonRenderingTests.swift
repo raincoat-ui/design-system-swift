@@ -9,6 +9,7 @@
     // These tests draw real buttons into a bitmap and read the pixels back, so they check what
     // SwiftUI actually lays out and paints: heights, fills, outlines, and the order of content.
     // Pressed and hover colors cannot be triggered here; ButtonAppearanceTests covers them.
+    // Whatever a theme can change is drawn in every theme (allThemes, in Generated/Themes.swift).
 
     /// A drawn view: its size in points and its pixels, at one pixel per point.
     @MainActor
@@ -24,17 +25,18 @@
         ///   - width: The width offered to the view, or nil for its own ideal width.
         init(
             _ view: some View,
+            theme: RaincoatTheme = .base,
             mode: ColorMode = .light,
             density: Density = .comfortable,
             direction: LayoutDirection = .leftToRight,
             width: CGFloat? = nil
         ) throws {
-            let theme = RaincoatTheme(id: "test-\(mode.rawValue)") { _, density in
-                RaincoatTheme.base.tokens(mode: mode, density: density)
+            let fixed = RaincoatTheme(id: "\(theme.id)-\(mode.rawValue)") { _, density in
+                theme.tokens(mode: mode, density: density)
             }
             let renderer = ImageRenderer(
                 content: view
-                    .raincoatTheme(theme)
+                    .raincoatTheme(fixed)
                     .raincoatDensity(density)
                     .environment(\.layoutDirection, direction)
             )
@@ -92,8 +94,10 @@
         }
     }
 
-    private func tokens(_ mode: ColorMode, _ density: Density = .comfortable) -> RaincoatTokenSet {
-        RaincoatTheme.base.tokens(mode: mode, density: density)
+    private func tokens(
+        _ mode: ColorMode, _ density: Density = .comfortable, in theme: RaincoatTheme = .base
+    ) -> RaincoatTokenSet {
+        theme.tokens(mode: mode, density: density)
     }
 
     /// A solid square of one color, to stand for an icon that is easy to find in a drawing.
@@ -113,47 +117,51 @@
     private let longLabel = "Save all of these changes and send the updated version to every reviewer"
 
     @MainActor
-    @Test(arguments: ColorMode.allCases, ButtonVariant.allCases)
-    func aButtonIsPaintedWithItsTokens(mode: ColorMode, variant: ButtonVariant) throws {
-        let button = tokens(mode).button
-        let drawing = try Drawing(RaincoatButton("Save", variant: variant) {}, mode: mode)
-        let middle = drawing.height / 2
-        // Just inside the outline, at the left edge and vertical middle; and on the outline.
-        let inside = (x: 3, y: middle)
-        let edge = (x: 0, y: middle)
+    @Test(arguments: allThemes, ColorMode.allCases)
+    func aButtonIsPaintedWithItsTokens(theme: RaincoatTheme, mode: ColorMode) throws {
+        let button = tokens(mode, in: theme).button
+        for variant in ButtonVariant.allCases {
+            let drawing = try Drawing(RaincoatButton("Save", variant: variant) {}, theme: theme, mode: mode)
+            let middle = drawing.height / 2
+            // Just inside the outline, at the left edge and vertical middle; and on the outline.
+            let inside = (x: 3, y: middle)
+            let edge = (x: 0, y: middle)
 
-        switch variant {
-        case .primary:
-            #expect(drawing.has(button.primary.bg.default, at: inside.x, inside.y))
-            #expect(drawing.has(button.primary.bg.default, at: edge.x, edge.y))
-        case .secondary:
-            #expect(drawing.has(button.secondary.bg.default, at: inside.x, inside.y))
-            #expect(drawing.has(button.secondary.border, at: edge.x, edge.y))
-        case .ghost:
-            #expect(drawing.isTransparent(inside.x, inside.y))
-            #expect(drawing.isTransparent(edge.x, edge.y))
-        case .danger:
-            #expect(drawing.has(button.danger.bg.default, at: inside.x, inside.y))
-            #expect(drawing.has(button.danger.bg.default, at: edge.x, edge.y))
-        }
-
-        // The label is drawn in the variant's foreground color.
-        let foreground: TokenColor =
             switch variant {
-            case .primary: button.primary.fg
-            case .secondary: button.secondary.fg
-            case .ghost: button.ghost.fg
-            case .danger: button.danger.fg
+            case .primary:
+                #expect(drawing.has(button.primary.bg.default, at: inside.x, inside.y), "\(variant)")
+                #expect(drawing.has(button.primary.bg.default, at: edge.x, edge.y), "\(variant)")
+            case .secondary:
+                #expect(drawing.has(button.secondary.bg.default, at: inside.x, inside.y), "\(variant)")
+                #expect(drawing.has(button.secondary.border, at: edge.x, edge.y), "\(variant)")
+            case .ghost:
+                #expect(drawing.isTransparent(inside.x, inside.y), "\(variant)")
+                #expect(drawing.isTransparent(edge.x, edge.y), "\(variant)")
+            case .danger:
+                #expect(drawing.has(button.danger.bg.default, at: inside.x, inside.y), "\(variant)")
+                #expect(drawing.has(button.danger.bg.default, at: edge.x, edge.y), "\(variant)")
             }
-        #expect(!drawing.columns(with: foreground).isEmpty)
+
+            // The label is drawn in the variant's foreground color.
+            let foreground: TokenColor =
+                switch variant {
+                case .primary: button.primary.fg
+                case .secondary: button.secondary.fg
+                case .ghost: button.ghost.fg
+                case .danger: button.danger.fg
+                }
+            #expect(!drawing.columns(with: foreground).isEmpty, "\(variant)")
+        }
     }
 
     @MainActor
-    @Test(arguments: ColorMode.allCases)
-    func aDisabledButtonIsPaintedWithTheDisabledTokens(mode: ColorMode) throws {
-        let disabled = tokens(mode).button.disabled
+    @Test(arguments: allThemes, ColorMode.allCases)
+    func aDisabledButtonIsPaintedWithTheDisabledTokens(theme: RaincoatTheme, mode: ColorMode) throws {
+        let disabled = tokens(mode, in: theme).button.disabled
         for variant in ButtonVariant.allCases {
-            let drawing = try Drawing(RaincoatButton("Save", variant: variant) {}.disabled(true), mode: mode)
+            let drawing = try Drawing(
+                RaincoatButton("Save", variant: variant) {}.disabled(true), theme: theme, mode: mode
+            )
             let middle = drawing.height / 2
             #expect(drawing.has(disabled.bg, at: 3, middle), "\(variant)")
             #expect(drawing.has(disabled.border, at: 0, middle), "\(variant)")
@@ -161,16 +169,20 @@
     }
 
     @MainActor
-    @Test(arguments: Density.allCases, ButtonSize.allCases)
-    func aButtonIsAsTallAsItsTokenAndTakesNoMoreRoomThanItShows(density: Density, size: ButtonSize) throws {
-        let button = tokens(.light, density).button
-        let height = Int(ButtonHeight(button, size))
-        let drawing = try Drawing(RaincoatButton("Save", variant: .primary, size: size) {}, density: density)
+    @Test(arguments: allThemes, Density.allCases)
+    func aButtonIsAsTallAsItsTokenAndTakesNoMoreRoomThanItShows(theme: RaincoatTheme, density: Density) throws {
+        let button = tokens(.light, density, in: theme).button
+        for size in ButtonSize.allCases {
+            let height = Int(ButtonHeight(button, size))
+            let drawing = try Drawing(
+                RaincoatButton("Save", variant: .primary, size: size) {}, theme: theme, density: density
+            )
 
-        // The layout size is the painted container. (A quarter of the way along is clear of
-        // the round corners.)
-        #expect(drawing.height == height)
-        #expect(drawing.paintedRows(inColumn: drawing.width / 4)?.count == height)
+            // The layout size is the painted container. (A quarter of the way along is clear of
+            // the round corners.)
+            #expect(drawing.height == height, "\(size)")
+            #expect(drawing.paintedRows(inColumn: drawing.width / 4)?.count == height, "\(size)")
+        }
     }
 
     @MainActor
@@ -208,10 +220,11 @@
     }
 
     @MainActor
-    @Test func aLongLabelWrapsAndTheButtonGrowsTaller() throws {
-        let button = tokens(.light).button
-        let oneLine = try Drawing(RaincoatButton("Save", variant: .primary) {})
-        let wrapped = try Drawing(RaincoatButton(longLabel, variant: .primary) {}, width: 220)
+    @Test(arguments: allThemes)
+    func aLongLabelWrapsAndTheButtonGrowsTaller(theme: RaincoatTheme) throws {
+        let button = tokens(.light, in: theme).button
+        let oneLine = try Drawing(RaincoatButton("Save", variant: .primary) {}, theme: theme)
+        let wrapped = try Drawing(RaincoatButton(longLabel, variant: .primary) {}, theme: theme, width: 220)
         let lineHeight = button.label.md.lineHeight * button.label.md.size
 
         #expect(oneLine.height == Int(button.height.md))
@@ -249,14 +262,20 @@
     }
 
     @MainActor
-    @Test func aLoadingButtonShowsASpinnerInPlaceOfTheLeadingIconAndKeepsItsColors() throws {
-        let button = tokens(.light).button
-        let plain = try Drawing(RaincoatButton("Save", variant: .primary) {})
-        let withIcon = try Drawing(RaincoatButton("Save", variant: .primary, leadingIcon: marker(magenta)) {})
-        let loading = try Drawing(
-            RaincoatButton("Save", variant: .primary, leadingIcon: marker(magenta), isLoading: true) {}
+    @Test(arguments: allThemes)
+    func aLoadingButtonShowsASpinnerInPlaceOfTheLeadingIconAndKeepsItsColors(theme: RaincoatTheme) throws {
+        let button = tokens(.light, in: theme).button
+        let plain = try Drawing(RaincoatButton("Save", variant: .primary) {}, theme: theme)
+        let withIcon = try Drawing(
+            RaincoatButton("Save", variant: .primary, leadingIcon: marker(magenta)) {}, theme: theme
         )
-        let loadingWithoutIcon = try Drawing(RaincoatButton("Save", variant: .primary, isLoading: true) {})
+        let loading = try Drawing(
+            RaincoatButton("Save", variant: .primary, leadingIcon: marker(magenta), isLoading: true) {},
+            theme: theme
+        )
+        let loadingWithoutIcon = try Drawing(
+            RaincoatButton("Save", variant: .primary, isLoading: true) {}, theme: theme
+        )
 
         // The spinner takes the icon's place: same width with or without an icon, and wider
         // than the plain button by one icon and one gap.
@@ -278,10 +297,12 @@
     }
 
     @MainActor
-    @Test func theStyleGivesAnyButtonTheSameLook() throws {
-        let button = tokens(.dark).button
+    @Test(arguments: allThemes)
+    func theStyleGivesAnyButtonTheSameLook(theme: RaincoatTheme) throws {
+        let button = tokens(.dark, in: theme).button
         let styled = try Drawing(
             Button("Read the guide") {}.buttonStyle(.raincoat(variant: .danger, size: .lg)),
+            theme: theme,
             mode: .dark
         )
         #expect(styled.height == Int(button.height.lg))

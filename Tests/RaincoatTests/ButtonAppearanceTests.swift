@@ -7,9 +7,12 @@ import Testing
 // The mapping from a button's variant, size, and state to its tokens. Expected values are
 // looked up by token id, built from the variant's and size's names in the spec, so these tests
 // do not repeat the switch statements they check. This file uses no SwiftUI and runs on Linux.
+// The mappings are checked in every theme (allThemes, in Generated/Themes.swift).
 
-private func tokens(_ mode: ColorMode, _ density: Density = .comfortable) -> RaincoatTokenSet {
-    RaincoatTheme.base.tokens(mode: mode, density: density)
+private func tokens(
+    _ mode: ColorMode, _ density: Density = .comfortable, in theme: RaincoatTheme = .base
+) -> RaincoatTokenSet {
+    theme.tokens(mode: mode, density: density)
 }
 
 private func canonical(_ color: TokenColor?) -> String? {
@@ -27,9 +30,14 @@ private func canonical(_ color: TokenColor?) -> String? {
     #expect(State(isEnabled: false, isLoading: false, isPressed: false, isHovered: false) == .disabled)
 }
 
-@Test(arguments: ColorMode.allCases, ButtonVariant.allCases)
-func eachVariantTakesItsColorsFromItsTokens(mode: ColorMode, variant: ButtonVariant) {
-    let set = tokens(mode)
+@Test(arguments: allThemes, ColorMode.allCases)
+func eachVariantTakesItsColorsFromItsTokens(theme: RaincoatTheme, mode: ColorMode) {
+    for variant in ButtonVariant.allCases {
+        checkColors(tokens(mode, in: theme), variant: variant)
+    }
+}
+
+private func checkColors(_ set: RaincoatTokenSet, variant: ButtonVariant) {
     let source = set.flattened()
     let name = variant.rawValue
 
@@ -52,9 +60,9 @@ func eachVariantTakesItsColorsFromItsTokens(mode: ColorMode, variant: ButtonVari
     }
 }
 
-@Test(arguments: ColorMode.allCases)
-func everyVariantLooksTheSameWhenDisabled(mode: ColorMode) {
-    let set = tokens(mode)
+@Test(arguments: allThemes, ColorMode.allCases)
+func everyVariantLooksTheSameWhenDisabled(theme: RaincoatTheme, mode: ColorMode) {
+    let set = tokens(mode, in: theme)
     let source = set.flattened()
     for variant in ButtonVariant.allCases {
         let colors = ButtonColors(set.button, variant: variant, interaction: .disabled)
@@ -64,9 +72,14 @@ func everyVariantLooksTheSameWhenDisabled(mode: ColorMode) {
     }
 }
 
-@Test(arguments: Density.allCases, ButtonSize.allCases)
-func eachSizeTakesItsMeasurementsFromItsTokens(density: Density, size: ButtonSize) {
-    let set = tokens(.light, density)
+@Test(arguments: allThemes, Density.allCases)
+func eachSizeTakesItsMeasurementsFromItsTokens(theme: RaincoatTheme, density: Density) {
+    for size in ButtonSize.allCases {
+        checkMeasurements(tokens(.light, density, in: theme), size: size)
+    }
+}
+
+private func checkMeasurements(_ set: RaincoatTokenSet, size: ButtonSize) {
     let source = set.flattened()
     let name = size.rawValue
     let measurements = ButtonMeasurements(set.button, size: size)

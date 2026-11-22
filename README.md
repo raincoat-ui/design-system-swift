@@ -12,12 +12,14 @@ version has reached.
 | Product             | Contains                                                  |
 | ------------------- | --------------------------------------------------------- |
 | `Raincoat`          | The components and the SwiftUI environment                |
-| `RaincoatThemeBase` | The base theme                                            |
+| `RaincoatTheme<Id>` | One per theme, such as `RaincoatThemeBase`                |
 | `RaincoatTokens`    | The token types. Foundation only; it also builds on Linux |
 
 ## Use
 
-Apply a theme once, near the root of the app:
+Each theme is a product of its own, so an app links only its own. The
+[themes page](https://raincoat-ui.github.io/design-system/foundations/themes/) lists them. Apply
+the theme once, near the root of the app:
 
 ```swift
 import Raincoat
