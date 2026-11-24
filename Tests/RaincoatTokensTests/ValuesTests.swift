@@ -29,6 +29,32 @@ import Testing
     #expect(TokenFormat.string(TokenEasing(x1: 0.2, y1: 0, x2: 0, y2: 1)) == "0.2000,0.0000,0.0000,1.0000")
 }
 
+@Test func shadowsFormatLayerByLayer() {
+    let drop = TokenShadowLayer(
+        color: TokenColor(hex: 0x000000, alpha: 0.2), offsetX: 0, offsetY: 2, blur: 4, spread: 0, inset: false
+    )
+    let inner = TokenShadowLayer(
+        color: TokenColor(hex: 0xFFFFFF), offsetX: 0, offsetY: 1, blur: 0, spread: 0, inset: true
+    )
+    #expect(
+        TokenFormat.string(TokenShadow(layers: [drop, inner]))
+            == "#00000033|0.0000|2.0000|4.0000|0.0000|false, #ffffff|0.0000|1.0000|0.0000|0.0000|true"
+    )
+}
+
+@Test func aTransparentShadowHasNothingToDraw() {
+    let none = TokenShadow(layers: [
+        TokenShadowLayer(color: TokenColor(hex: 0x000000, alpha: 0), offsetX: 0, offsetY: 0, blur: 0, spread: 0, inset: false)
+    ])
+    #expect(none.visibleLayers.isEmpty)
+    #expect(TokenFormat.string(none) == "#00000000|0.0000|0.0000|0.0000|0.0000|false")
+
+    let faint = TokenShadowLayer(
+        color: TokenColor(hex: 0x000000, alpha: 0.1), offsetX: 0, offsetY: 1, blur: 2, spread: 0, inset: false
+    )
+    #expect(TokenShadow(layers: none.layers + [faint]).visibleLayers == [faint])
+}
+
 @Test func colorModeFollowsSchemeAndContrast() {
     #expect(ColorMode(isDark: false, increasedContrast: false) == .light)
     #expect(ColorMode(isDark: true, increasedContrast: false) == .dark)

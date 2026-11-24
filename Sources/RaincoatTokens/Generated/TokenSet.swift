@@ -5,21 +5,35 @@ public struct RaincoatTokenSet: Hashable, Sendable {
     public let color: ColorTokens
     public let size: SizeTokens
     public let motion: MotionTokens
+    public let shadow: ShadowTokens
     public let radius: RadiusTokens
     public let borderWidth: BorderWidthTokens
     public let space: SpaceTokens
     public let type: TypeTokens
     public let button: ButtonTokens
+    public let card: CardTokens
+    public let dialog: DialogTokens
+    public let sheet: SheetTokens
+    public let input: InputTokens
+    public let tabs: TabsTokens
+    public let toast: ToastTokens
 
-    public init(color: ColorTokens, size: SizeTokens, motion: MotionTokens, radius: RadiusTokens, borderWidth: BorderWidthTokens, space: SpaceTokens, type: TypeTokens, button: ButtonTokens) {
+    public init(color: ColorTokens, size: SizeTokens, motion: MotionTokens, shadow: ShadowTokens, radius: RadiusTokens, borderWidth: BorderWidthTokens, space: SpaceTokens, type: TypeTokens, button: ButtonTokens, card: CardTokens, dialog: DialogTokens, sheet: SheetTokens, input: InputTokens, tabs: TabsTokens, toast: ToastTokens) {
         self.color = color
         self.size = size
         self.motion = motion
+        self.shadow = shadow
         self.radius = radius
         self.borderWidth = borderWidth
         self.space = space
         self.type = type
         self.button = button
+        self.card = card
+        self.dialog = dialog
+        self.sheet = sheet
+        self.input = input
+        self.tabs = tabs
+        self.toast = toast
     }
 
     public struct ColorTokens: Hashable, Sendable {
@@ -45,19 +59,25 @@ public struct RaincoatTokenSet: Hashable, Sendable {
         public let canvas: TokenColor
         /// Background of cards, sheets, and other raised surfaces.
         public let surface: TokenColor
+        /// Surfaces above the page: cards, dialogs, sheets, and toasts.
+        public let raised: TokenColor
         /// A quiet fill for grouping content, such as a table header.
         public let subtle: TokenColor
         /// A surface in the opposite scheme, such as a toast.
         public let inverse: TokenColor
         /// Fill of a disabled control.
         public let disabled: TokenColor
+        /// The veil over the screen behind a modal surface, such as a dialog.
+        public let scrim: TokenColor
 
-        public init(canvas: TokenColor, surface: TokenColor, subtle: TokenColor, inverse: TokenColor, disabled: TokenColor) {
+        public init(canvas: TokenColor, surface: TokenColor, raised: TokenColor, subtle: TokenColor, inverse: TokenColor, disabled: TokenColor, scrim: TokenColor) {
             self.canvas = canvas
             self.surface = surface
+            self.raised = raised
             self.subtle = subtle
             self.inverse = inverse
             self.disabled = disabled
+            self.scrim = scrim
         }
     }
 
@@ -96,14 +116,23 @@ public struct RaincoatTokenSet: Hashable, Sendable {
         public let `default`: TokenColor
         /// The outline of interactive controls.
         public let strong: TokenColor
+        /// The outline of a control that takes input, such as a text field.
+        public let control: TokenColor
+        /// The outline of a control in error.
+        public let danger: TokenColor
+        /// The mark of the selected item in a set, such as the selected tab.
+        public let selected: TokenColor
         /// The focus ring.
         public let focus: TokenColor
         /// The outline of a disabled control.
         public let disabled: TokenColor
 
-        public init(`default`: TokenColor, strong: TokenColor, focus: TokenColor, disabled: TokenColor) {
+        public init(`default`: TokenColor, strong: TokenColor, control: TokenColor, danger: TokenColor, selected: TokenColor, focus: TokenColor, disabled: TokenColor) {
             self.default = `default`
             self.strong = strong
+            self.control = control
+            self.danger = danger
+            self.selected = selected
             self.focus = focus
             self.disabled = disabled
         }
@@ -158,11 +187,13 @@ public struct RaincoatTokenSet: Hashable, Sendable {
         public let control: SizeControlTokens
         public let target: SizeTargetTokens
         public let icon: SizeIconTokens
+        public let panel: SizePanelTokens
 
-        public init(control: SizeControlTokens, target: SizeTargetTokens, icon: SizeIconTokens) {
+        public init(control: SizeControlTokens, target: SizeTargetTokens, icon: SizeIconTokens, panel: SizePanelTokens) {
             self.control = control
             self.target = target
             self.icon = icon
+            self.panel = panel
         }
     }
 
@@ -202,6 +233,21 @@ public struct RaincoatTokenSet: Hashable, Sendable {
         }
     }
 
+    public struct SizePanelTokens: Hashable, Sendable {
+        /// Width of a small panel above the page, such as an alert dialog or a sheet at the end edge.
+        public let sm: Double
+        /// Width of a medium panel above the page, such as a dialog or a toast at its widest.
+        public let md: Double
+        /// Width of a large panel above the page, such as a large dialog.
+        public let lg: Double
+
+        public init(sm: Double, md: Double, lg: Double) {
+            self.sm = sm
+            self.md = md
+            self.lg = lg
+        }
+    }
+
     public struct MotionTokens: Hashable, Sendable {
         public let duration: MotionDurationTokens
         public let easing: MotionEasingTokens
@@ -236,6 +282,18 @@ public struct RaincoatTokenSet: Hashable, Sendable {
         public init(interactive: TokenEasing, leave: TokenEasing) {
             self.interactive = interactive
             self.leave = leave
+        }
+    }
+
+    public struct ShadowTokens: Hashable, Sendable {
+        /// The shadow of a card.
+        public let raised: TokenShadow
+        /// The shadow of dialogs, sheets, and toasts.
+        public let overlay: TokenShadow
+
+        public init(raised: TokenShadow, overlay: TokenShadow) {
+            self.raised = raised
+            self.overlay = overlay
         }
     }
 
@@ -315,22 +373,48 @@ public struct RaincoatTokenSet: Hashable, Sendable {
     }
 
     public struct TypeTokens: Hashable, Sendable {
+        public let heading: TypeHeadingTokens
         public let body: TypeBodyTokens
         public let label: TypeLabelTokens
+        /// Timestamps, counts, and other short secondary facts. Never prose.
+        public let caption: TokenTextStyle
 
-        public init(body: TypeBodyTokens, label: TypeLabelTokens) {
+        public init(heading: TypeHeadingTokens, body: TypeBodyTokens, label: TypeLabelTokens, caption: TokenTextStyle) {
+            self.heading = heading
             self.body = body
             self.label = label
+            self.caption = caption
+        }
+    }
+
+    public struct TypeHeadingTokens: Hashable, Sendable {
+        /// The title of a screen. Once per screen.
+        public let xl: TokenTextStyle
+        /// Section titles on a screen.
+        public let lg: TokenTextStyle
+        /// Dialog and sheet titles, and subsection titles.
+        public let md: TokenTextStyle
+        /// Card titles and group titles in lists.
+        public let sm: TokenTextStyle
+
+        public init(xl: TokenTextStyle, lg: TokenTextStyle, md: TokenTextStyle, sm: TokenTextStyle) {
+            self.xl = xl
+            self.lg = lg
+            self.md = md
+            self.sm = sm
         }
     }
 
     public struct TypeBodyTokens: Hashable, Sendable {
+        /// An introductory paragraph.
+        public let lg: TokenTextStyle
         /// Default body text.
         public let md: TokenTextStyle
         /// Secondary body text, such as help text under a field.
         public let sm: TokenTextStyle
 
-        public init(md: TokenTextStyle, sm: TokenTextStyle) {
+        public init(lg: TokenTextStyle, md: TokenTextStyle, sm: TokenTextStyle) {
+            self.lg = lg
             self.md = md
             self.sm = sm
         }
@@ -596,6 +680,628 @@ public struct RaincoatTokenSet: Hashable, Sendable {
             self.border = border
         }
     }
+
+    public struct CardTokens: Hashable, Sendable {
+        public let bg: CardBgTokens
+        public let border: CardBorderTokens
+        public let focusRing: CardFocusRingTokens
+        public let transition: CardTransitionTokens
+        /// Corner radius of the card.
+        public let radius: Double
+        /// Space between the card's edge and its content.
+        public let padding: Double
+        /// Space between the parts of the card.
+        public let gap: Double
+        /// Shadow of the card.
+        public let shadow: TokenShadow
+
+        public init(bg: CardBgTokens, border: CardBorderTokens, focusRing: CardFocusRingTokens, transition: CardTransitionTokens, radius: Double, padding: Double, gap: Double, shadow: TokenShadow) {
+            self.bg = bg
+            self.border = border
+            self.focusRing = focusRing
+            self.transition = transition
+            self.radius = radius
+            self.padding = padding
+            self.gap = gap
+            self.shadow = shadow
+        }
+    }
+
+    public struct CardBgTokens: Hashable, Sendable {
+        /// Fill of the card.
+        public let `default`: TokenColor
+        /// Fill of an interactive card when pressed.
+        public let pressed: TokenColor
+
+        public init(`default`: TokenColor, pressed: TokenColor) {
+            self.default = `default`
+            self.pressed = pressed
+        }
+    }
+
+    public struct CardBorderTokens: Hashable, Sendable {
+        /// Outline width of the card.
+        public let width: Double
+        /// Outline of the card. A theme that draws filled cards with no outline points it at its fill.
+        public let `default`: TokenColor
+        /// Outline of an interactive card under a pointer.
+        public let hover: TokenColor
+
+        public init(width: Double, `default`: TokenColor, hover: TokenColor) {
+            self.width = width
+            self.default = `default`
+            self.hover = hover
+        }
+    }
+
+    public struct CardFocusRingTokens: Hashable, Sendable {
+        /// Width of the focus ring of an interactive card.
+        public let width: Double
+        /// Gap between the card's edge and its focus ring.
+        public let offset: Double
+        /// Color of the focus ring, drawn on the surface behind the card.
+        public let color: TokenColor
+
+        public init(width: Double, offset: Double, color: TokenColor) {
+            self.width = width
+            self.offset = offset
+            self.color = color
+        }
+    }
+
+    public struct CardTransitionTokens: Hashable, Sendable {
+        /// Duration of hover and press changes on an interactive card.
+        public let duration: Double
+        /// Easing of hover and press changes on an interactive card.
+        public let easing: TokenEasing
+
+        public init(duration: Double, easing: TokenEasing) {
+            self.duration = duration
+            self.easing = easing
+        }
+    }
+
+    public struct DialogTokens: Hashable, Sendable {
+        public let border: DialogBorderTokens
+        public let width: DialogWidthTokens
+        public let footer: DialogFooterTokens
+        public let enter: DialogEnterTokens
+        public let exit: DialogExitTokens
+        /// The veil over the screen behind a dialog or a sheet.
+        public let scrim: TokenColor
+        /// Fill of a dialog or a sheet.
+        public let bg: TokenColor
+        /// Corner radius of a dialog, and of the open corners of a sheet.
+        public let radius: Double
+        /// Shadow of a dialog or a sheet.
+        public let shadow: TokenShadow
+        /// The least space between a dialog and the edge of the window.
+        public let margin: Double
+        /// Space between the edge of a dialog or a sheet and its content.
+        public let padding: Double
+        /// Space between the header, the body, and the footer.
+        public let gap: Double
+        /// Text style of the title.
+        public let title: TokenTextStyle
+        /// Text style of the description under the title.
+        public let description: TokenTextStyle
+        /// Color of the title and the description.
+        public let fg: TokenColor
+        /// The hairline under the header once the body has scrolled under it.
+        public let divider: TokenColor
+
+        public init(border: DialogBorderTokens, width: DialogWidthTokens, footer: DialogFooterTokens, enter: DialogEnterTokens, exit: DialogExitTokens, scrim: TokenColor, bg: TokenColor, radius: Double, shadow: TokenShadow, margin: Double, padding: Double, gap: Double, title: TokenTextStyle, description: TokenTextStyle, fg: TokenColor, divider: TokenColor) {
+            self.border = border
+            self.width = width
+            self.footer = footer
+            self.enter = enter
+            self.exit = exit
+            self.scrim = scrim
+            self.bg = bg
+            self.radius = radius
+            self.shadow = shadow
+            self.margin = margin
+            self.padding = padding
+            self.gap = gap
+            self.title = title
+            self.description = description
+            self.fg = fg
+            self.divider = divider
+        }
+    }
+
+    public struct DialogBorderTokens: Hashable, Sendable {
+        /// Outline width of a dialog or a sheet.
+        public let width: Double
+        /// The hairline outline of a dialog or a sheet.
+        public let color: TokenColor
+
+        public init(width: Double, color: TokenColor) {
+            self.width = width
+            self.color = color
+        }
+    }
+
+    public struct DialogWidthTokens: Hashable, Sendable {
+        /// Width of the small dialog.
+        public let sm: Double
+        /// Width of the medium dialog.
+        public let md: Double
+        /// Width of the large dialog.
+        public let lg: Double
+
+        public init(sm: Double, md: Double, lg: Double) {
+            self.sm = sm
+            self.md = md
+            self.lg = lg
+        }
+    }
+
+    public struct DialogFooterTokens: Hashable, Sendable {
+        /// Space between the buttons in the footer.
+        public let gap: Double
+
+        public init(gap: Double) {
+            self.gap = gap
+        }
+    }
+
+    public struct DialogEnterTokens: Hashable, Sendable {
+        /// Duration of a dialog or a sheet appearing.
+        public let duration: Double
+        /// Easing of a dialog or a sheet appearing.
+        public let easing: TokenEasing
+
+        public init(duration: Double, easing: TokenEasing) {
+            self.duration = duration
+            self.easing = easing
+        }
+    }
+
+    public struct DialogExitTokens: Hashable, Sendable {
+        /// Duration of a dialog or a sheet leaving.
+        public let duration: Double
+        /// Easing of a dialog or a sheet leaving.
+        public let easing: TokenEasing
+
+        public init(duration: Double, easing: TokenEasing) {
+            self.duration = duration
+            self.easing = easing
+        }
+    }
+
+    public struct SheetTokens: Hashable, Sendable {
+        public let width: SheetWidthTokens
+        public let maxWidth: SheetMaxWidthTokens
+        public let handle: SheetHandleTokens
+
+        public init(width: SheetWidthTokens, maxWidth: SheetMaxWidthTokens, handle: SheetHandleTokens) {
+            self.width = width
+            self.maxWidth = maxWidth
+            self.handle = handle
+        }
+    }
+
+    public struct SheetWidthTokens: Hashable, Sendable {
+        /// Width of a sheet at the end edge of the window.
+        public let end: Double
+
+        public init(end: Double) {
+            self.end = end
+        }
+    }
+
+    public struct SheetMaxWidthTokens: Hashable, Sendable {
+        /// The widest a sheet at the bottom edge grows. On wider windows it is centered.
+        public let bottom: Double
+
+        public init(bottom: Double) {
+            self.bottom = bottom
+        }
+    }
+
+    public struct SheetHandleTokens: Hashable, Sendable {
+        /// Color of the handle at the top of a bottom sheet.
+        public let color: TokenColor
+
+        public init(color: TokenColor) {
+            self.color = color
+        }
+    }
+
+    public struct InputTokens: Hashable, Sendable {
+        public let height: InputHeightTokens
+        public let paddingInline: InputPaddingInlineTokens
+        public let iconSize: InputIconSizeTokens
+        public let label: InputLabelTokens
+        public let value: InputValueTokens
+        public let description: InputDescriptionTokens
+        public let error: InputErrorTokens
+        public let bg: InputBgTokens
+        public let fg: InputFgTokens
+        public let border: InputBorderTokens
+        public let focusRing: InputFocusRingTokens
+        /// Corner radius of the field.
+        public let radius: Double
+        /// Outline width of the field.
+        public let borderWidth: Double
+        /// Space between the label, the description, the field, and the error.
+        public let gap: Double
+        /// Color of the placeholder, an example of the format shown while the field is empty.
+        public let placeholder: TokenColor
+        /// Smallest touch target of any field, whatever its visible height.
+        public let targetMinimum: Double
+
+        public init(height: InputHeightTokens, paddingInline: InputPaddingInlineTokens, iconSize: InputIconSizeTokens, label: InputLabelTokens, value: InputValueTokens, description: InputDescriptionTokens, error: InputErrorTokens, bg: InputBgTokens, fg: InputFgTokens, border: InputBorderTokens, focusRing: InputFocusRingTokens, radius: Double, borderWidth: Double, gap: Double, placeholder: TokenColor, targetMinimum: Double) {
+            self.height = height
+            self.paddingInline = paddingInline
+            self.iconSize = iconSize
+            self.label = label
+            self.value = value
+            self.description = description
+            self.error = error
+            self.bg = bg
+            self.fg = fg
+            self.border = border
+            self.focusRing = focusRing
+            self.radius = radius
+            self.borderWidth = borderWidth
+            self.gap = gap
+            self.placeholder = placeholder
+            self.targetMinimum = targetMinimum
+        }
+    }
+
+    public struct InputHeightTokens: Hashable, Sendable {
+        /// Height of the small field.
+        public let sm: Double
+        /// Height of the medium field.
+        public let md: Double
+        /// Height of the large field.
+        public let lg: Double
+
+        public init(sm: Double, md: Double, lg: Double) {
+            self.sm = sm
+            self.md = md
+            self.lg = lg
+        }
+    }
+
+    public struct InputPaddingInlineTokens: Hashable, Sendable {
+        /// Side padding of the small field.
+        public let sm: Double
+        /// Side padding of the medium field.
+        public let md: Double
+        /// Side padding of the large field.
+        public let lg: Double
+
+        public init(sm: Double, md: Double, lg: Double) {
+            self.sm = sm
+            self.md = md
+            self.lg = lg
+        }
+    }
+
+    public struct InputIconSizeTokens: Hashable, Sendable {
+        /// Icon size in the small field.
+        public let sm: Double
+        /// Icon size in the medium field.
+        public let md: Double
+        /// Icon size in the large field.
+        public let lg: Double
+
+        public init(sm: Double, md: Double, lg: Double) {
+            self.sm = sm
+            self.md = md
+            self.lg = lg
+        }
+    }
+
+    public struct InputLabelTokens: Hashable, Sendable {
+        /// Text style of the label of the small field.
+        public let sm: TokenTextStyle
+        /// Text style of the label of the medium field.
+        public let md: TokenTextStyle
+        /// Text style of the label of the large field.
+        public let lg: TokenTextStyle
+        /// Color of the label.
+        public let fg: TokenColor
+
+        public init(sm: TokenTextStyle, md: TokenTextStyle, lg: TokenTextStyle, fg: TokenColor) {
+            self.sm = sm
+            self.md = md
+            self.lg = lg
+            self.fg = fg
+        }
+    }
+
+    public struct InputValueTokens: Hashable, Sendable {
+        /// Text style of the small field's value.
+        public let sm: TokenTextStyle
+        /// Text style of the medium field's value.
+        public let md: TokenTextStyle
+        /// Text style of the large field's value.
+        public let lg: TokenTextStyle
+
+        public init(sm: TokenTextStyle, md: TokenTextStyle, lg: TokenTextStyle) {
+            self.sm = sm
+            self.md = md
+            self.lg = lg
+        }
+    }
+
+    public struct InputDescriptionTokens: Hashable, Sendable {
+        /// Text style of the description, between the label and the field.
+        public let type: TokenTextStyle
+        /// Color of the description.
+        public let fg: TokenColor
+
+        public init(type: TokenTextStyle, fg: TokenColor) {
+            self.type = type
+            self.fg = fg
+        }
+    }
+
+    public struct InputErrorTokens: Hashable, Sendable {
+        /// Text style of the error message, below the field.
+        public let type: TokenTextStyle
+        /// Color of the error message.
+        public let fg: TokenColor
+
+        public init(type: TokenTextStyle, fg: TokenColor) {
+            self.type = type
+            self.fg = fg
+        }
+    }
+
+    public struct InputBgTokens: Hashable, Sendable {
+        /// Fill of the field.
+        public let `default`: TokenColor
+        /// Fill of a read-only field.
+        public let readOnly: TokenColor
+        /// Fill of a disabled field.
+        public let disabled: TokenColor
+
+        public init(`default`: TokenColor, readOnly: TokenColor, disabled: TokenColor) {
+            self.default = `default`
+            self.readOnly = readOnly
+            self.disabled = disabled
+        }
+    }
+
+    public struct InputFgTokens: Hashable, Sendable {
+        /// Color of the value and the leading icon.
+        public let `default`: TokenColor
+        /// Color of the value and the leading icon of a disabled field.
+        public let disabled: TokenColor
+
+        public init(`default`: TokenColor, disabled: TokenColor) {
+            self.default = `default`
+            self.disabled = disabled
+        }
+    }
+
+    public struct InputBorderTokens: Hashable, Sendable {
+        /// Outline of the field. It is what identifies the field against the surface.
+        public let `default`: TokenColor
+        /// Outline of a field in error.
+        public let invalid: TokenColor
+        /// The hairline outline of a read-only field.
+        public let readOnly: TokenColor
+        /// Outline of a disabled field.
+        public let disabled: TokenColor
+
+        public init(`default`: TokenColor, invalid: TokenColor, readOnly: TokenColor, disabled: TokenColor) {
+            self.default = `default`
+            self.invalid = invalid
+            self.readOnly = readOnly
+            self.disabled = disabled
+        }
+    }
+
+    public struct InputFocusRingTokens: Hashable, Sendable {
+        /// Width of the focus ring.
+        public let width: Double
+        /// Gap between the field's edge and its focus ring.
+        public let offset: Double
+        /// Color of the focus ring, drawn on the surface behind the field.
+        public let color: TokenColor
+
+        public init(width: Double, offset: Double, color: TokenColor) {
+            self.width = width
+            self.offset = offset
+            self.color = color
+        }
+    }
+
+    public struct TabsTokens: Hashable, Sendable {
+        public let fg: TabsFgTokens
+        public let bg: TabsBgTokens
+        public let indicator: TabsIndicatorTokens
+        public let divider: TabsDividerTokens
+        public let focusRing: TabsFocusRingTokens
+        public let transition: TabsTransitionTokens
+        /// Height of a tab.
+        public let height: Double
+        /// Side padding of a tab.
+        public let paddingInline: Double
+        /// Space between a tab's icon and its label.
+        public let gap: Double
+        /// Text style of a tab's label.
+        public let label: TokenTextStyle
+        /// Icon size in a tab.
+        public let iconSize: Double
+        /// Smallest touch target of a tab, whatever its visible height.
+        public let targetMinimum: Double
+
+        public init(fg: TabsFgTokens, bg: TabsBgTokens, indicator: TabsIndicatorTokens, divider: TabsDividerTokens, focusRing: TabsFocusRingTokens, transition: TabsTransitionTokens, height: Double, paddingInline: Double, gap: Double, label: TokenTextStyle, iconSize: Double, targetMinimum: Double) {
+            self.fg = fg
+            self.bg = bg
+            self.indicator = indicator
+            self.divider = divider
+            self.focusRing = focusRing
+            self.transition = transition
+            self.height = height
+            self.paddingInline = paddingInline
+            self.gap = gap
+            self.label = label
+            self.iconSize = iconSize
+            self.targetMinimum = targetMinimum
+        }
+    }
+
+    public struct TabsFgTokens: Hashable, Sendable {
+        /// Label and icon color of a tab that is not selected.
+        public let `default`: TokenColor
+        /// Label and icon color of the selected tab.
+        public let selected: TokenColor
+        /// Label and icon color of a tab when hovered or pressed.
+        public let hover: TokenColor
+
+        public init(`default`: TokenColor, selected: TokenColor, hover: TokenColor) {
+            self.default = `default`
+            self.selected = selected
+            self.hover = hover
+        }
+    }
+
+    public struct TabsBgTokens: Hashable, Sendable {
+        /// Fill of a tab when hovered.
+        public let hover: TokenColor
+        /// Fill of a tab when pressed.
+        public let pressed: TokenColor
+
+        public init(hover: TokenColor, pressed: TokenColor) {
+            self.hover = hover
+            self.pressed = pressed
+        }
+    }
+
+    public struct TabsIndicatorTokens: Hashable, Sendable {
+        /// The rule under the selected tab. It marks which tab is selected.
+        public let color: TokenColor
+        /// Thickness of the rule under the selected tab.
+        public let width: Double
+
+        public init(color: TokenColor, width: Double) {
+            self.color = color
+            self.width = width
+        }
+    }
+
+    public struct TabsDividerTokens: Hashable, Sendable {
+        /// The hairline under the row of tabs.
+        public let color: TokenColor
+        /// Thickness of the hairline under the row of tabs.
+        public let width: Double
+
+        public init(color: TokenColor, width: Double) {
+            self.color = color
+            self.width = width
+        }
+    }
+
+    public struct TabsFocusRingTokens: Hashable, Sendable {
+        /// Width of the focus ring.
+        public let width: Double
+        /// Color of the focus ring, drawn on the surface behind the tab.
+        public let color: TokenColor
+
+        public init(width: Double, color: TokenColor) {
+            self.width = width
+            self.color = color
+        }
+    }
+
+    public struct TabsTransitionTokens: Hashable, Sendable {
+        /// Duration of hover, press, and selection changes.
+        public let duration: Double
+        /// Easing of hover, press, and selection changes.
+        public let easing: TokenEasing
+
+        public init(duration: Double, easing: TokenEasing) {
+            self.duration = duration
+            self.easing = easing
+        }
+    }
+
+    public struct ToastTokens: Hashable, Sendable {
+        public let border: ToastBorderTokens
+        public let enter: ToastEnterTokens
+        public let exit: ToastExitTokens
+        /// Fill of a toast.
+        public let bg: TokenColor
+        /// Corner radius of a toast.
+        public let radius: Double
+        /// Shadow of a toast.
+        public let shadow: TokenShadow
+        /// The widest a toast grows.
+        public let maxWidth: Double
+        /// Space between a toast and the edges of the window, and what it sits above.
+        public let margin: Double
+        /// Space above and below a toast's content.
+        public let paddingBlock: Double
+        /// Space at the start and end of a toast's content.
+        public let paddingInline: Double
+        /// Space between the message, the action, and the close button.
+        public let gap: Double
+        /// Text style of the message.
+        public let message: TokenTextStyle
+        /// Color of the message and the close button.
+        public let fg: TokenColor
+
+        public init(border: ToastBorderTokens, enter: ToastEnterTokens, exit: ToastExitTokens, bg: TokenColor, radius: Double, shadow: TokenShadow, maxWidth: Double, margin: Double, paddingBlock: Double, paddingInline: Double, gap: Double, message: TokenTextStyle, fg: TokenColor) {
+            self.border = border
+            self.enter = enter
+            self.exit = exit
+            self.bg = bg
+            self.radius = radius
+            self.shadow = shadow
+            self.maxWidth = maxWidth
+            self.margin = margin
+            self.paddingBlock = paddingBlock
+            self.paddingInline = paddingInline
+            self.gap = gap
+            self.message = message
+            self.fg = fg
+        }
+    }
+
+    public struct ToastBorderTokens: Hashable, Sendable {
+        /// Outline width of a toast.
+        public let width: Double
+        /// Outline of a toast. With no scrim behind it, its edge alone sets it apart from what it covers.
+        public let color: TokenColor
+
+        public init(width: Double, color: TokenColor) {
+            self.width = width
+            self.color = color
+        }
+    }
+
+    public struct ToastEnterTokens: Hashable, Sendable {
+        /// Duration of a toast appearing.
+        public let duration: Double
+        /// Easing of a toast appearing.
+        public let easing: TokenEasing
+
+        public init(duration: Double, easing: TokenEasing) {
+            self.duration = duration
+            self.easing = easing
+        }
+    }
+
+    public struct ToastExitTokens: Hashable, Sendable {
+        /// Duration of a toast leaving.
+        public let duration: Double
+        /// Easing of a toast leaving.
+        public let easing: TokenEasing
+
+        public init(duration: Double, easing: TokenEasing) {
+            self.duration = duration
+            self.easing = easing
+        }
+    }
 }
 
 extension RaincoatTokenSet {
@@ -604,9 +1310,11 @@ extension RaincoatTokenSet {
         [
             "color.bg.canvas": TokenFormat.string(color.bg.canvas),
             "color.bg.surface": TokenFormat.string(color.bg.surface),
+            "color.bg.raised": TokenFormat.string(color.bg.raised),
             "color.bg.subtle": TokenFormat.string(color.bg.subtle),
             "color.bg.inverse": TokenFormat.string(color.bg.inverse),
             "color.bg.disabled": TokenFormat.string(color.bg.disabled),
+            "color.bg.scrim": TokenFormat.string(color.bg.scrim),
             "color.fg.default": TokenFormat.string(color.fg.default),
             "color.fg.muted": TokenFormat.string(color.fg.muted),
             "color.fg.inverse": TokenFormat.string(color.fg.inverse),
@@ -617,6 +1325,9 @@ extension RaincoatTokenSet {
             "color.fg.disabled": TokenFormat.string(color.fg.disabled),
             "color.border.default": TokenFormat.string(color.border.default),
             "color.border.strong": TokenFormat.string(color.border.strong),
+            "color.border.control": TokenFormat.string(color.border.control),
+            "color.border.danger": TokenFormat.string(color.border.danger),
+            "color.border.selected": TokenFormat.string(color.border.selected),
             "color.border.focus": TokenFormat.string(color.border.focus),
             "color.border.disabled": TokenFormat.string(color.border.disabled),
             "color.accent.default": TokenFormat.string(color.accent.default),
@@ -634,11 +1345,16 @@ extension RaincoatTokenSet {
             "size.target.minimum": TokenFormat.string(size.target.minimum),
             "size.icon.sm": TokenFormat.string(size.icon.sm),
             "size.icon.md": TokenFormat.string(size.icon.md),
+            "size.panel.sm": TokenFormat.string(size.panel.sm),
+            "size.panel.md": TokenFormat.string(size.panel.md),
+            "size.panel.lg": TokenFormat.string(size.panel.lg),
             "motion.duration.fast": TokenFormat.string(motion.duration.fast),
             "motion.duration.normal": TokenFormat.string(motion.duration.normal),
             "motion.duration.slow": TokenFormat.string(motion.duration.slow),
             "motion.easing.interactive": TokenFormat.string(motion.easing.interactive),
             "motion.easing.leave": TokenFormat.string(motion.easing.leave),
+            "shadow.raised": TokenFormat.string(shadow.raised),
+            "shadow.overlay": TokenFormat.string(shadow.overlay),
             "radius.none": TokenFormat.string(radius.none),
             "radius.sm": TokenFormat.string(radius.sm),
             "radius.md": TokenFormat.string(radius.md),
@@ -658,6 +1374,12 @@ extension RaincoatTokenSet {
             "space.10": TokenFormat.string(space._10),
             "space.12": TokenFormat.string(space._12),
             "space.16": TokenFormat.string(space._16),
+            "type.caption": TokenFormat.string(type.caption),
+            "type.heading.xl": TokenFormat.string(type.heading.xl),
+            "type.heading.lg": TokenFormat.string(type.heading.lg),
+            "type.heading.md": TokenFormat.string(type.heading.md),
+            "type.heading.sm": TokenFormat.string(type.heading.sm),
+            "type.body.lg": TokenFormat.string(type.body.lg),
             "type.body.md": TokenFormat.string(type.body.md),
             "type.body.sm": TokenFormat.string(type.body.sm),
             "type.label.sm": TokenFormat.string(type.label.sm),
@@ -703,6 +1425,116 @@ extension RaincoatTokenSet {
             "button.disabled.bg": TokenFormat.string(button.disabled.bg),
             "button.disabled.fg": TokenFormat.string(button.disabled.fg),
             "button.disabled.border": TokenFormat.string(button.disabled.border),
+            "card.radius": TokenFormat.string(card.radius),
+            "card.padding": TokenFormat.string(card.padding),
+            "card.gap": TokenFormat.string(card.gap),
+            "card.shadow": TokenFormat.string(card.shadow),
+            "card.bg.default": TokenFormat.string(card.bg.default),
+            "card.bg.pressed": TokenFormat.string(card.bg.pressed),
+            "card.border.width": TokenFormat.string(card.border.width),
+            "card.border.default": TokenFormat.string(card.border.default),
+            "card.border.hover": TokenFormat.string(card.border.hover),
+            "card.focus-ring.width": TokenFormat.string(card.focusRing.width),
+            "card.focus-ring.offset": TokenFormat.string(card.focusRing.offset),
+            "card.focus-ring.color": TokenFormat.string(card.focusRing.color),
+            "card.transition.duration": TokenFormat.string(card.transition.duration),
+            "card.transition.easing": TokenFormat.string(card.transition.easing),
+            "dialog.scrim": TokenFormat.string(dialog.scrim),
+            "dialog.bg": TokenFormat.string(dialog.bg),
+            "dialog.radius": TokenFormat.string(dialog.radius),
+            "dialog.shadow": TokenFormat.string(dialog.shadow),
+            "dialog.margin": TokenFormat.string(dialog.margin),
+            "dialog.padding": TokenFormat.string(dialog.padding),
+            "dialog.gap": TokenFormat.string(dialog.gap),
+            "dialog.title": TokenFormat.string(dialog.title),
+            "dialog.description": TokenFormat.string(dialog.description),
+            "dialog.fg": TokenFormat.string(dialog.fg),
+            "dialog.divider": TokenFormat.string(dialog.divider),
+            "dialog.border.width": TokenFormat.string(dialog.border.width),
+            "dialog.border.color": TokenFormat.string(dialog.border.color),
+            "dialog.width.sm": TokenFormat.string(dialog.width.sm),
+            "dialog.width.md": TokenFormat.string(dialog.width.md),
+            "dialog.width.lg": TokenFormat.string(dialog.width.lg),
+            "dialog.footer.gap": TokenFormat.string(dialog.footer.gap),
+            "dialog.enter.duration": TokenFormat.string(dialog.enter.duration),
+            "dialog.enter.easing": TokenFormat.string(dialog.enter.easing),
+            "dialog.exit.duration": TokenFormat.string(dialog.exit.duration),
+            "dialog.exit.easing": TokenFormat.string(dialog.exit.easing),
+            "sheet.width.end": TokenFormat.string(sheet.width.end),
+            "sheet.max-width.bottom": TokenFormat.string(sheet.maxWidth.bottom),
+            "sheet.handle.color": TokenFormat.string(sheet.handle.color),
+            "input.radius": TokenFormat.string(input.radius),
+            "input.border-width": TokenFormat.string(input.borderWidth),
+            "input.gap": TokenFormat.string(input.gap),
+            "input.placeholder": TokenFormat.string(input.placeholder),
+            "input.target-minimum": TokenFormat.string(input.targetMinimum),
+            "input.height.sm": TokenFormat.string(input.height.sm),
+            "input.height.md": TokenFormat.string(input.height.md),
+            "input.height.lg": TokenFormat.string(input.height.lg),
+            "input.padding-inline.sm": TokenFormat.string(input.paddingInline.sm),
+            "input.padding-inline.md": TokenFormat.string(input.paddingInline.md),
+            "input.padding-inline.lg": TokenFormat.string(input.paddingInline.lg),
+            "input.icon-size.sm": TokenFormat.string(input.iconSize.sm),
+            "input.icon-size.md": TokenFormat.string(input.iconSize.md),
+            "input.icon-size.lg": TokenFormat.string(input.iconSize.lg),
+            "input.label.sm": TokenFormat.string(input.label.sm),
+            "input.label.md": TokenFormat.string(input.label.md),
+            "input.label.lg": TokenFormat.string(input.label.lg),
+            "input.label.fg": TokenFormat.string(input.label.fg),
+            "input.value.sm": TokenFormat.string(input.value.sm),
+            "input.value.md": TokenFormat.string(input.value.md),
+            "input.value.lg": TokenFormat.string(input.value.lg),
+            "input.description.type": TokenFormat.string(input.description.type),
+            "input.description.fg": TokenFormat.string(input.description.fg),
+            "input.error.type": TokenFormat.string(input.error.type),
+            "input.error.fg": TokenFormat.string(input.error.fg),
+            "input.bg.default": TokenFormat.string(input.bg.default),
+            "input.bg.read-only": TokenFormat.string(input.bg.readOnly),
+            "input.bg.disabled": TokenFormat.string(input.bg.disabled),
+            "input.fg.default": TokenFormat.string(input.fg.default),
+            "input.fg.disabled": TokenFormat.string(input.fg.disabled),
+            "input.border.default": TokenFormat.string(input.border.default),
+            "input.border.invalid": TokenFormat.string(input.border.invalid),
+            "input.border.read-only": TokenFormat.string(input.border.readOnly),
+            "input.border.disabled": TokenFormat.string(input.border.disabled),
+            "input.focus-ring.width": TokenFormat.string(input.focusRing.width),
+            "input.focus-ring.offset": TokenFormat.string(input.focusRing.offset),
+            "input.focus-ring.color": TokenFormat.string(input.focusRing.color),
+            "tabs.height": TokenFormat.string(tabs.height),
+            "tabs.padding-inline": TokenFormat.string(tabs.paddingInline),
+            "tabs.gap": TokenFormat.string(tabs.gap),
+            "tabs.label": TokenFormat.string(tabs.label),
+            "tabs.icon-size": TokenFormat.string(tabs.iconSize),
+            "tabs.target-minimum": TokenFormat.string(tabs.targetMinimum),
+            "tabs.fg.default": TokenFormat.string(tabs.fg.default),
+            "tabs.fg.selected": TokenFormat.string(tabs.fg.selected),
+            "tabs.fg.hover": TokenFormat.string(tabs.fg.hover),
+            "tabs.bg.hover": TokenFormat.string(tabs.bg.hover),
+            "tabs.bg.pressed": TokenFormat.string(tabs.bg.pressed),
+            "tabs.indicator.color": TokenFormat.string(tabs.indicator.color),
+            "tabs.indicator.width": TokenFormat.string(tabs.indicator.width),
+            "tabs.divider.color": TokenFormat.string(tabs.divider.color),
+            "tabs.divider.width": TokenFormat.string(tabs.divider.width),
+            "tabs.focus-ring.width": TokenFormat.string(tabs.focusRing.width),
+            "tabs.focus-ring.color": TokenFormat.string(tabs.focusRing.color),
+            "tabs.transition.duration": TokenFormat.string(tabs.transition.duration),
+            "tabs.transition.easing": TokenFormat.string(tabs.transition.easing),
+            "toast.bg": TokenFormat.string(toast.bg),
+            "toast.radius": TokenFormat.string(toast.radius),
+            "toast.shadow": TokenFormat.string(toast.shadow),
+            "toast.max-width": TokenFormat.string(toast.maxWidth),
+            "toast.margin": TokenFormat.string(toast.margin),
+            "toast.padding-block": TokenFormat.string(toast.paddingBlock),
+            "toast.padding-inline": TokenFormat.string(toast.paddingInline),
+            "toast.gap": TokenFormat.string(toast.gap),
+            "toast.message": TokenFormat.string(toast.message),
+            "toast.fg": TokenFormat.string(toast.fg),
+            "toast.border.width": TokenFormat.string(toast.border.width),
+            "toast.border.color": TokenFormat.string(toast.border.color),
+            "toast.enter.duration": TokenFormat.string(toast.enter.duration),
+            "toast.enter.easing": TokenFormat.string(toast.enter.easing),
+            "toast.exit.duration": TokenFormat.string(toast.exit.duration),
+            "toast.exit.easing": TokenFormat.string(toast.exit.easing),
         ]
     }
 }

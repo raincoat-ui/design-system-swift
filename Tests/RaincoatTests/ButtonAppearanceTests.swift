@@ -92,6 +92,8 @@ private func checkMeasurements(_ set: RaincoatTokenSet, size: ButtonSize) {
     // One line of the label, with the padding above and below, is exactly the height.
     let line = measurements.label.lineHeight * measurements.label.size
     #expect(abs(line + 2 * measurements.paddingBlock - measurements.height) < 0.0001)
+    // So is an icon alone, with the padding around it.
+    #expect(abs(measurements.iconSize + 2 * measurements.paddingAroundIcon - measurements.height) < 0.0001)
 }
 
 @Test func compactDensityMakesButtonsShorterButNotNarrower() {

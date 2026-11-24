@@ -116,4 +116,11 @@ struct ButtonMeasurements: Hashable, Sendable {
     var paddingBlock: Double {
         max(0, (height - label.lineHeight * label.size) / 2)
     }
+
+    /// Space on every side of the icon of a button that shows only an icon, which centers the
+    /// icon in `height`. It stays the same when the text is enlarged and the icon with it, so
+    /// the button grows instead, and stays square.
+    var paddingAroundIcon: Double {
+        max(0, (height - iconSize) / 2)
+    }
 }

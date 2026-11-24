@@ -197,7 +197,8 @@
         @Tokens private var tokens
         @Environment(\.isEnabled) private var isEnabled
         @Environment(\.accessibilityReduceMotion) private var reduceMotion
-        @ScaledMetric(relativeTo: .body) private var textScale: CGFloat = 1
+        @Environment(\.raincoatButtonFillsWidth) private var fillsWidth
+        @TextScale(relativeTo: .body) private var textScale
         @State private var isHovered = false
 
         var body: some View {
@@ -216,11 +217,11 @@
                 .tracking(text.tracking)
                 .lineSpacing(text.lineSpacing)
                 .foregroundStyle(Color(colors.foreground))
-                .padding(.horizontal, style.isIconOnly ? 0 : measurements.paddingInline)
-                .padding(.vertical, style.isIconOnly ? 0 : measurements.paddingBlock)
+                .padding(.horizontal, style.isIconOnly ? measurements.paddingAroundIcon : measurements.paddingInline)
+                .padding(.vertical, style.isIconOnly ? measurements.paddingAroundIcon : measurements.paddingBlock)
                 .frame(
                     minWidth: measurements.height,
-                    maxWidth: style.isFullWidth ? .infinity : nil,
+                    maxWidth: style.isFullWidth || fillsWidth ? .infinity : nil,
                     minHeight: measurements.height
                 )
                 .background {
@@ -245,6 +246,13 @@
                     value: interaction
                 )
         }
+    }
+
+    extension EnvironmentValues {
+        /// Whether buttons take the width they are offered, as each button of a dialog's footer
+        /// does when the buttons stack. Their own width is still that of their label, so a row
+        /// of them can be measured.
+        @Entry var raincoatButtonFillsWidth = false
     }
 
     /// The area of a button that takes touches: the container, and where the container is
@@ -272,7 +280,7 @@
 
         @Tokens private var tokens
         @Environment(\.isEnabled) private var isEnabled
-        @ScaledMetric(relativeTo: .body) private var textScale: CGFloat = 1
+        @TextScale(relativeTo: .body) private var textScale
 
         var body: some View {
             let measurements = ButtonMeasurements(tokens.button, size: size)

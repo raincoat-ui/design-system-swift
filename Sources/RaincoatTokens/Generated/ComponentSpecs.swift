@@ -27,3 +27,130 @@ public enum ButtonSize: String, CaseIterable, Sendable {
     /// The value used when none is given.
     public static let standard: ButtonSize = .md
 }
+
+/// Dialog: The width of the dialog. On a window narrower than that, it spans the width of the window less a margin.
+public enum DialogSize: String, CaseIterable, Sendable {
+    /// A dialog with a sentence or two and a few buttons.
+    case sm
+    /// The default width, for a short form.
+    case md
+    /// A dialog with wide content, such as a table or a preview.
+    case lg
+
+    /// The value used when none is given.
+    public static let standard: DialogSize = .md
+}
+
+/// Sheet: The edge of the window the sheet comes from. On iOS every sheet is the system sheet, from the bottom on iPhone and centered on iPad.
+public enum SheetEdge: String, CaseIterable, Sendable {
+    /// Rises from the bottom edge. It is as wide as the window, up to the medium panel width, and centered on wider windows.
+    case bottom
+    /// Slides in from the end edge: the right in left-to-right layouts, the left in right-to-left ones. On a window less than twice its width, it comes from the bottom instead.
+    case end
+
+    /// The value used when none is given.
+    public static let standard: SheetEdge = .bottom
+}
+
+/// Input: The height and text size of the field, the same heights as the Button's.
+public enum InputSize: String, CaseIterable, Sendable {
+    /// For dense layouts such as toolbars and tables. Its text is 14px.
+    case sm
+    /// The default size.
+    case md
+    /// For prominent fields, such as the one field of a step.
+    case lg
+
+    /// The value used when none is given.
+    public static let standard: InputSize = .md
+}
+
+/// Input: What the field holds. It chooses the keyboard on touch screens and what autofill offers. A multi-line field holds text.
+public enum InputType: String, CaseIterable, Sendable {
+    /// Any text.
+    case text
+    /// An email address. It stays left-to-right in a right-to-left layout.
+    case email
+    /// A password. What is typed is not shown.
+    case password
+    /// A search query.
+    case search
+    /// A phone number. It stays left-to-right in a right-to-left layout.
+    case tel
+    /// A web address. It stays left-to-right in a right-to-left layout.
+    case url
+
+    /// The value used when none is given.
+    public static let standard: InputType = .text
+}
+
+/// Tabs: On the web, whether the arrow keys select the tab they move to. On iOS and Android a keyboard moves focus the platform's way, and Enter or Space selects, as for any control.
+public enum TabsActivationMode: String, CaseIterable, Sendable {
+    /// The arrow keys select the tab they move to. The panel shows at once.
+    case automatic
+    /// The arrow keys only move focus, and Enter or Space selects. For panels that are slow to show.
+    case manual
+
+    /// The value used when none is given.
+    public static let standard: TabsActivationMode = .automatic
+}
+
+/// Text: The text style.
+public enum TextVariant: String, CaseIterable, Sendable {
+    /// An introductory paragraph.
+    case bodyLg = "body-lg"
+    /// Running text. The default.
+    case bodyMd = "body-md"
+    /// Secondary running text, such as help text under a field.
+    case bodySm = "body-sm"
+    /// Text beside or in a large control.
+    case labelLg = "label-lg"
+    /// Text beside or in a medium control.
+    case labelMd = "label-md"
+    /// Text beside or in a small control.
+    case labelSm = "label-sm"
+    /// Timestamps, counts, and other short secondary facts. Never prose.
+    case caption
+
+    /// The value used when none is given.
+    public static let standard: TextVariant = .bodyMd
+}
+
+/// Text: The color of the text, from the theme's text roles.
+public enum TextColor: String, CaseIterable, Sendable {
+    /// Primary text.
+    case `default`
+    /// Secondary text, such as a caption or help text.
+    case muted
+    /// An error, or text about something destructive.
+    case danger
+
+    /// The value used when none is given.
+    public static let standard: TextColor = .default
+}
+
+/// Heading: How the heading looks. It follows the level unless it is given: set it to change the look and keep the level.
+public enum HeadingVariant: String, CaseIterable, Sendable {
+    /// The title of a screen. Once per screen.
+    case headingXl = "heading-xl"
+    /// Section titles on a screen.
+    case headingLg = "heading-lg"
+    /// Dialog and sheet titles, and subsection titles.
+    case headingMd = "heading-md"
+    /// Card titles and group titles in lists.
+    case headingSm = "heading-sm"
+
+    /// The value used when none is given, for each level.
+    public static let standardByLevel: [Int: HeadingVariant] = [1: .headingXl, 2: .headingLg, 3: .headingMd, 4: .headingSm, 5: .headingSm, 6: .headingSm]
+}
+
+/// Heading: The color of the heading, from the theme's text roles.
+public enum HeadingColor: String, CaseIterable, Sendable {
+    /// Primary text.
+    case `default`
+    /// A heading that steps back, such as a group title in a list.
+    case muted
+
+    /// The value used when none is given.
+    public static let standard: HeadingColor = .default
+}

@@ -59,6 +59,43 @@ public struct TokenEasing: Hashable, Sendable {
     }
 }
 
+/// One layer of a shadow. Offsets, blur, and spread are in points.
+public struct TokenShadowLayer: Hashable, Sendable {
+    public let color: TokenColor
+    public let offsetX: Double
+    public let offsetY: Double
+    /// The blur radius, as CSS defines it for `box-shadow`.
+    public let blur: Double
+    public let spread: Double
+    /// Whether the shadow falls inside the shape instead of behind it.
+    public let inset: Bool
+
+    public init(color: TokenColor, offsetX: Double, offsetY: Double, blur: Double, spread: Double, inset: Bool) {
+        self.color = color
+        self.offsetX = offsetX
+        self.offsetY = offsetY
+        self.blur = blur
+        self.spread = spread
+        self.inset = inset
+    }
+
+    /// Whether the layer paints anything. A transparent layer does not, whatever its size.
+    public var isVisible: Bool { color.alpha > 0 }
+}
+
+/// A shadow of one or more layers. The first layer is drawn on top, as in CSS.
+public struct TokenShadow: Hashable, Sendable {
+    public let layers: [TokenShadowLayer]
+
+    public init(layers: [TokenShadowLayer]) {
+        self.layers = layers
+    }
+
+    /// The layers that paint anything. A component draws only these, so a shadow of transparent
+    /// layers, such as the base's `shadow.none`, draws nothing at all.
+    public var visibleLayers: [TokenShadowLayer] { layers.filter(\.isVisible) }
+}
+
 /// The four color modes every theme provides.
 public enum ColorMode: String, CaseIterable, Sendable {
     case light
@@ -142,5 +179,18 @@ public enum TokenFormat {
             string(value.letterSpacing),
             string(value.lineHeight),
         ].joined(separator: "|")
+    }
+
+    public static func string(_ value: TokenShadow) -> String {
+        value.layers.map { layer in
+            [
+                string(layer.color),
+                string(layer.offsetX),
+                string(layer.offsetY),
+                string(layer.blur),
+                string(layer.spread),
+                String(layer.inset),
+            ].joined(separator: "|")
+        }.joined(separator: ", ")
     }
 }
